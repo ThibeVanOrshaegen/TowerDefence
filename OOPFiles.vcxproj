@@ -133,24 +133,27 @@
     <ClCompile Include="Beweging.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="MG.cpp" />
-    <ClCompile Include="OOPFiles.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beweging.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gold.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="MG.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Waves.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -16,8 +16,6 @@ void Canon::fire(sf::Vector2f shooterPosition) {
     {
         arrowPosition.y = 240;
         arrowPosition.x = 240;
-
-
     }
 }
 

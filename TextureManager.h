@@ -97,6 +97,26 @@ public:
     sf::Texture texturemudzes;
     sf::Sprite spritemudzes;
 
+    //Tower
+
+    sf::Texture texturetowereen;
+    sf::Sprite spritetowereen;
+
+    sf::Texture texturetowertwee;
+    sf::Sprite spritetowertwee;
+
+    sf::Texture texturetowerdrie;
+    sf::Sprite spritetowerdrie;
+
+    sf::Texture texturetowervier;
+    sf::Sprite spritetowervier;
+
+    sf::Texture texturetowervijf;
+    sf::Sprite spritetowervijf;
+
+    sf::Texture texturetowerzes;
+    sf::Sprite spritetowerzes;
+
     //Canon
 
     sf::Texture textureshootereen;

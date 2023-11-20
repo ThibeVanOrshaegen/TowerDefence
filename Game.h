@@ -7,6 +7,8 @@
 #include "Canon.h"
 #include "Laser.h"
 #include "MG.h"
+#include "EnemyManager.h"
+#include <vector>
 
 class Game {
 private:
@@ -29,20 +31,26 @@ private:
     Laser laser;
     MG mg;
 
+    EnemyManager enemyManager;
+
     TextureManager textureManager;
 
     bool spriteVisibleP = false;
     bool spriteVisibleC = false;
 
     bool spriteVisiblecanon = false;
-    bool spriteVisiblelaser = false;
+    bool spriteVisiblelasereen = false;
+    bool spriteVisiblelasertwee = false;
     bool spriteVisiblemg = false;
+
+    std::vector<std::unique_ptr<Weapon>> weapons;
 
 public:
     Game();
-
+  
     void updateShooterRotation();
-    void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition);
     void run(sf::RenderWindow& window);
+    void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition);
+    void updateGameLogic();
 };
 

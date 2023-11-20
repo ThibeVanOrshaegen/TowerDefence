@@ -166,7 +166,7 @@ TextureManager::TextureManager()
 
     texturemudvier.loadFromFile("./mudtwee.png");
     spritemudvier.setTexture(texturemudvier); //anders laat die moddervlek niet zien
-    sf::Vector2f mudvierPosition(505, 320);
+    sf::Vector2f mudvierPosition(505, 300);
     spritemudvier.setPosition(mudvierPosition);
     spritemudvier.setScale(0.3f, 0.3f);
 
@@ -176,18 +176,56 @@ TextureManager::TextureManager()
     spritemudvijf.setPosition(mudvijfPosition);
     spritemudvijf.setScale(0.3f, 0.3f);
 
+    //Tower
+
+    texturetowereen.loadFromFile("./Tower.png");
+    spritetowereen.setTexture(texturetowereen); //anders laat die moddervlek niet zien
+    sf::Vector2f towereenPosition(275, 260);
+    spritetowereen.setPosition(towereenPosition);
+    spritetowereen.setScale(0.44f, 0.44f);
+
+    texturetowertwee.loadFromFile("./Tower.png");
+    spritetowertwee.setTexture(texturetowertwee); //anders laat die moddervlek niet zien
+    sf::Vector2f towertweePosition(275, 430);
+    spritetowertwee.setPosition(towertweePosition);
+    spritetowertwee.setScale(0.44f, 0.44f);
+
+    texturetowerdrie.loadFromFile("./Tower.png");
+    spritetowerdrie.setTexture(texturetowerdrie); //anders laat die moddervlek niet zien
+    sf::Vector2f towerdriePosition(37, 270);
+    spritetowerdrie.setPosition(towerdriePosition);
+    spritetowerdrie.setScale(0.4f, 0.4f);
+
+    texturetowerzes.loadFromFile("./Tower.png");
+    spritetowerzes.setTexture(texturetowerzes); //anders laat die moddervlek niet zien
+    sf::Vector2f towerzesPosition(37, 490);
+    spritetowerzes.setPosition(towerzesPosition);
+    spritetowerzes.setScale(0.4f, 0.4f);
+
+    texturetowervier.loadFromFile("./Tower.png");
+    spritetowervier.setTexture(texturetowervier); //anders laat die moddervlek niet zien
+    sf::Vector2f towervierPosition(547, 320);
+    spritetowervier.setPosition(towervierPosition);
+    spritetowervier.setScale(0.5, 0.5f);
+
+    texturetowervijf.loadFromFile("./Tower.png");
+    spritetowervijf.setTexture(texturetowervijf); //anders laat die moddervlek niet zien
+    sf::Vector2f towervijfPosition(850, 430);
+    spritetowervijf.setPosition(towervijfPosition);
+    spritetowervijf.setScale(0.43f, 0.43f);
+
     //Weapons
 
     textureshootereen.loadFromFile("./canonzo.png"); // x = +70, y = +40
     spriteshootereen.setTexture(textureshootereen);
     sf::Vector2f shootereenPosition(320, 300);
     spriteshootereen.setPosition(shootereenPosition);
-    spriteshootereen.setRotation(180);
+    spriteshootereen.setRotation(90);
     spriteshootereen.setScale(0.1f, 0.1f);
 
     textureshootertwee.loadFromFile("./canonzo.png");
     spriteshootertwee.setTexture(textureshootertwee);
-    sf::Vector2f shootertweePosition(288, 440);
+    sf::Vector2f shootertweePosition(298, 457);
     spriteshootertwee.setPosition(shootertweePosition);
     spriteshootertwee.setScale(0.1f, 0.1f);
 
@@ -200,7 +238,7 @@ TextureManager::TextureManager()
 
     textureshootervier.loadFromFile("./MG.png");
     spriteshootervier.setTexture(textureshootervier);
-    sf::Vector2f shootervierPosition(100, 340);
+    sf::Vector2f shootervierPosition(90, 340);
     spriteshootervier.setPosition(shootervierPosition);
     spriteshootervier.setRotation(180);
     spriteshootervier.setScale(0.4f, 0.4f);

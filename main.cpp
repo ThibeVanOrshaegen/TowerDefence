@@ -1,7 +1,7 @@
 #include "Beweging.h"
 #include "Enemy.h"
 #include "Gold.h"
-#include "Weapon.h"
+
 #include "Canon.h"
 #include "Laser.h"
 #include "MG.h"
