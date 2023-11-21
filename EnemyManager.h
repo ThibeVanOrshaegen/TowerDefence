@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Weapon.h"
 
-class EnemyManager {
+class EnemyManager : public Weapon{
 private:
 
     Weapon& laser;

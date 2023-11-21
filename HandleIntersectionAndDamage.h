@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "HealthBar.h" 
 
-class HandleIntersectionAndDamage {
+class HandleIntersectionAndDamage : public HealthBar{
 public:
     static void handleIntersectionsAndDamage(sf::Sprite& weaponSprite, sf::Sprite& robotSprite, HealthBar& healthBar);
 };

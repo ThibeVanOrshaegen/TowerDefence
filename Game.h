@@ -13,6 +13,7 @@
 #include "Weapon.h"
 #include <vector>
 
+
 class Game{
 private:
     HealthBar healthBar_een;
