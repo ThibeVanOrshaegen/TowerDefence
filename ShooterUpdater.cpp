@@ -7,16 +7,12 @@
 #include "Canon.h"
 #include "Laser.h"
 #include "MG.h"
-#include "EnemyManager.h"
-#include "ShooterUpdater.h"
+//#include "EnemyManager.h"
 #include "TextureManager.h"
 #include <vector>
 
 #define M_PI 3.14159265358979323846
 
-ShooterUpdater::ShooterUpdater() {
-    // Initialize any variables or resources if needed
-}
 
 void ShooterUpdater::updateShooterRotation(sf::Sprite& shooterSprite, sf::Sprite& laserSprite, float& spriteVisibleLaser, const sf::Vector2f& robotPosition, const sf::Vector2f& shooterPosition, float& distance) {
     sf::Vector2f shooterdriePosition = textureManager.spriteshooterdrie.getPosition();
@@ -289,4 +285,5 @@ void ShooterUpdater::updateShooterRotation(sf::Sprite& shooterSprite, sf::Sprite
     sf::Vector2f fixedPositionvier = textureManager.spriteshootervier.getPosition();
     textureManager.spriteshootervier.setPosition(fixedPositionvier);
 }
-}*/
+}
+*/

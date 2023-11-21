@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Weapon.h"
+#include "ShooterUpdater.h"
 
 class Canon : public Weapon {
 private:

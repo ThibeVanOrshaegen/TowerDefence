@@ -30,12 +30,8 @@ private:
 
     Canon canon;
     Laser laser;
-    Laser lasereen;
-    Laser lasertwee;
-    Laser laserdrie;
     MG mg;
 
-    EnemyManager enemyManager;
 
     TextureManager textureManager;
     //ShooterUpdater shooterUpdater; // Add an instance of ShooterUpdater
@@ -55,10 +51,11 @@ private:
 
 public:
     Game();
-  
+
     void updateShooterRotation();
     void run(sf::RenderWindow& window);
     void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition);
     void updateGameLogic();
 };
+
 

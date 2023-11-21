@@ -24,15 +24,8 @@ Game::Game()
     traagxsnely(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 70, 2.5f, 5.0f),
 
     canon(sf::Vector2f(150, 180)),
-
     laser(sf::Vector2f(610, 400)),
-    lasereen(sf::Vector2f(610, 400)),
-    lasertwee(sf::Vector2f(610, 400)),
-    laserdrie(sf::Vector2f(610, 400)),
-
-    mg(sf::Vector2f(65, 340)),
-    enemyManager(laser, canon, mg)
-
+    mg(sf::Vector2f(65, 340))
 {
     weapons.push_back(std::make_unique<Canon>(sf::Vector2f(100, 100)));
 }
@@ -43,9 +36,6 @@ void Game::updateShooterRotation() {
     sf::Vector2f shootervierPosition = textureManager.spriteshootervier.getPosition();
 
     sf::Vector2f laserPosition = laser.spritelaser.getPosition();
-    sf::Vector2f laserPositioneen = lasereen.spritelaser.getPosition();
-    sf::Vector2f laserPositiontwee = lasertwee.spritelaser.getPosition();
-    sf::Vector2f laserPositiondrie = laserdrie.spritelaser.getPosition();
 
     sf::Vector2f MGPosition = mg.spriteMG.getPosition();
     sf::Vector2f arrowPosition = canon.arrow.getPosition();
@@ -115,7 +105,6 @@ void Game::updateShooterRotation() {
     float gezondheidtraagxsnely = traagxsnely.getCurrentHealth();
 
 
-
     //if ((distancedrie < 150.0f) && (gezondheidtraag > 0))
     if (distancedrie < 150.0f)
     {//traag
@@ -127,25 +116,20 @@ void Game::updateShooterRotation() {
         laser.spritelaser.setOrigin(laser.spritelaser.getLocalBounds().width / 2, laser.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
 
         spriteVisiblelaser = true;
+    } 
 
-
-    } //if dictancedrie <distancedrieeen && distancedrie currenthealt > 0 else if distancedrieeen < distancedrie && distancedrie currenthealt > 0
-    //zolang de ene is aan het schieten kan de andere niet schieten
-    //mss else if van maken
-    //if ((distancedrieeen < 150.0f) && (gezondheidsnel > 0))
     if (distancedrieeen < 150.0f)
     {//snel
         float angledrieeen = atan2(dydrieeen, dxdrieeen) * 180 / M_PI;
         textureManager.spriteshooterdrie.setRotation(angledrieeen + 90);
         textureManager.spriteshooterdrie.setOrigin(textureManager.spriteshooterdrie.getLocalBounds().width / 2, textureManager.spriteshooterdrie.getLocalBounds().height / 2);
 
-        lasereen.spritelaser.setRotation(angledrieeen + 90); //werkt
-        lasereen.spritelaser.setOrigin(lasereen.spritelaser.getLocalBounds().width / 2, lasereen.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
+        laser.spritelaser.setRotation(angledrieeen + 90); //werkt
+        laser.spritelaser.setOrigin(laser.spritelaser.getLocalBounds().width / 2, laser.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
 
         spriteVisiblelasereen = true;
-
     }
-    //if ((distancedrietwee < 150.0f ) && (gezondheidsnelxtraagy > 0))
+
     if (distancedrietwee < 150.0f)
     {
         float angledrietwee = atan2(dydrietwee, dxdrietwee) * 180 / M_PI;
@@ -153,12 +137,11 @@ void Game::updateShooterRotation() {
         textureManager.spriteshooterdrie.setOrigin(textureManager.spriteshooterdrie.getLocalBounds().width / 2, textureManager.spriteshooterdrie.getLocalBounds().height / 2);
 
         laser.spritelaser.setRotation(angledrietwee + 90); //werkt
-        laser.spritelaser.setOrigin(lasertwee.spritelaser.getLocalBounds().width / 2, lasertwee.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
+        laser.spritelaser.setOrigin(laser.spritelaser.getLocalBounds().width / 2, laser.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
 
         spriteVisiblelasertwee = true;
-
     }
-    //if ((distancedriedrie < 150.0f) && (gezondheidsnelxtraagy > 0))
+
     if (distancedriedrie < 150.0f)
     {
         float angledriedrie = atan2(dydriedrie, dxdriedrie) * 180 / M_PI;
@@ -166,7 +149,7 @@ void Game::updateShooterRotation() {
         textureManager.spriteshooterdrie.setOrigin(textureManager.spriteshooterdrie.getLocalBounds().width / 2, textureManager.spriteshooterdrie.getLocalBounds().height / 2);
 
         laser.spritelaser.setRotation(angledriedrie + 90); //werkt
-        laser.spritelaser.setOrigin(laserdrie.spritelaser.getLocalBounds().width / 2, laserdrie.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
+        laser.spritelaser.setOrigin(laser.spritelaser.getLocalBounds().width / 2, laser.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
 
         spriteVisiblelaserdrie = true;
     }
@@ -377,8 +360,8 @@ void Game::run(sf::RenderWindow& window) {
             }
 
         }
-        
-        
+
+
         // Render
         window.clear();
 
@@ -455,27 +438,24 @@ void Game::run(sf::RenderWindow& window) {
 
 
             useWeapon(laser, textureManager.spriteshooterdrie.getPosition());
+            useWeapon(mg, textureManager.spriteshootervier.getPosition());
+            useWeapon(canon, textureManager.spriteshootereen.getPosition());
+
             if (spriteVisiblelaser)
                 window.draw(laser.spritelaser);
 
-            useWeapon(lasereen, textureManager.spriteshooterdrie.getPosition());
-            if(spriteVisiblelasereen)
-            window.draw(lasereen.spritelaser);
+            if (spriteVisiblelasereen)
+                window.draw(laser.spritelaser);
 
-            useWeapon(lasertwee, textureManager.spriteshooterdrie.getPosition());
             if (spriteVisiblelasertwee)
-                window.draw(lasertwee.spritelaser);
+                window.draw(laser.spritelaser);
 
-            useWeapon(laserdrie, textureManager.spriteshooterdrie.getPosition());
             if (spriteVisiblelaserdrie)
-                window.draw(laserdrie.spritelaser);
+                window.draw(laser.spritelaser);
 
-
-            useWeapon(mg, textureManager.spriteshootervier.getPosition());
             if (spriteVisiblemg)
                 window.draw(mg.spriteMG);
 
-            useWeapon(canon, textureManager.spriteshootereen.getPosition());
             if (spriteVisiblecanon)
                 window.draw(canon.arrow);
 
@@ -489,11 +469,11 @@ void Game::run(sf::RenderWindow& window) {
             redhealthBar_drie.updatePosition(sf::Vector2f(snelxtraagy.spriterobottwee.getPosition()));
             redhealthBar_vier.updatePosition(sf::Vector2f(traagxsnely.spriterobottwee.getPosition()));
 
-            if (laser.spritelaser.getGlobalBounds().intersects(traag.spriterobottwee.getGlobalBounds()))
+            if (laser.spritelaser.getGlobalBounds().intersects(snel.spriterobottwee.getGlobalBounds()))
             {
                 redhealthBar_een.applyDamage();
             }
-            if (laser.spritelaser.getGlobalBounds().intersects(snel.spriterobottwee.getGlobalBounds()))
+            if (laser.spritelaser.getGlobalBounds().intersects(traag.spriterobottwee.getGlobalBounds()))
             {
                 redhealthBar_twee.applyDamage();
             }
@@ -505,6 +485,9 @@ void Game::run(sf::RenderWindow& window) {
             {
                 redhealthBar_vier.applyDamage();
             }
+           
+
+            /*/
             if (mg.spriteMG.getGlobalBounds().intersects(traag.spriterobottwee.getGlobalBounds()))
             {
                 redhealthBar_een.applyDamage();
@@ -536,7 +519,7 @@ void Game::run(sf::RenderWindow& window) {
             if (canon.arrow.getGlobalBounds().intersects(traagxsnely.spriterobottwee.getGlobalBounds()))
             {
                 redhealthBar_vier.applyDamage();
-            }
+            }*/
 
             //if currenthealt <0 then richt op volgend targent, if currenthealt <0 then spriterobot twee verdwijnen kijk naar vorige codes
 
