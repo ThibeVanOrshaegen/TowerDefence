@@ -216,18 +216,19 @@ TextureManager::TextureManager()
 
     //Weapons
 
-    textureshootereen.loadFromFile("./canonzo.png"); // x = +70, y = +40
+    textureshootereen.loadFromFile("./Cannon.png"); // x = +70, y = +40 //red
     spriteshootereen.setTexture(textureshootereen);
-    sf::Vector2f shootereenPosition(320, 300);
+    sf::Vector2f shootereenPosition(325, 305);
     spriteshootereen.setPosition(shootereenPosition);
-    spriteshootereen.setRotation(90);
-    spriteshootereen.setScale(0.1f, 0.1f);
+    spriteshootereen.setRotation(0);
+    spriteshootereen.setScale(0.35f, 0.35f);
 
     textureshootertwee.loadFromFile("./canonzo.png");
     spriteshootertwee.setTexture(textureshootertwee);
     sf::Vector2f shootertweePosition(298, 457);
     spriteshootertwee.setPosition(shootertweePosition);
     spriteshootertwee.setScale(0.1f, 0.1f);
+
 
     textureshooterdrie.loadFromFile("./Missile_Launcher.png");
     spriteshooterdrie.setTexture(textureshooterdrie);

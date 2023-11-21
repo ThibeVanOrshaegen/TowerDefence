@@ -148,6 +148,9 @@ public:
     sf::Texture texturelaser;
     sf::Sprite spritelaser;
 
+    //Canonred
+    sf::Texture texturecanonred;
+    sf::Sprite spritecanonred;
 
     //MG
     sf::Texture textureMG;

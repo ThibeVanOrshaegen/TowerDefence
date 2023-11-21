@@ -1,9 +1,11 @@
 #include "Canon.h"
 
-Canon::Canon(sf::Vector2f initialPosition) : arrow(), arrowPosition(initialPosition), initialPosition(initialPosition) {
-    arrow.setFillColor(sf::Color::Black);
-    arrow.setRadius(15.f); //Scale gedaan in plaats van Radius dan gaat het niks weer
-    arrow.setPosition(initialPosition);
+Canon::Canon(sf::Vector2f initialPosition) : spritecanonred(), arrowPosition(initialPosition){
+    textureManager.texturecanonred.loadFromFile("./Bullet_Cannon.png");
+    spritecanonred.setTexture(textureManager.texturecanonred);
+    spritecanonred.setPosition(initialPosition);
+    spritecanonred.setScale(0.4f, 0.4f);
+    spritecanonred.setRotation(180);
 }
 
 void Canon::fire(sf::Vector2f shooterPosition) {
@@ -11,7 +13,7 @@ void Canon::fire(sf::Vector2f shooterPosition) {
     arrowPosition.y += arrowSpeed;
     arrowPosition.x -= arrowSpeed;
 
-    arrow.setPosition(arrowPosition);
+    spritecanonred.setPosition(arrowPosition);
     if (arrowPosition.y < 0 || arrowPosition.x < 0)
     {
         arrowPosition.y = 240;
@@ -21,5 +23,5 @@ void Canon::fire(sf::Vector2f shooterPosition) {
 
 void Canon::update() {
     float arrowSpeed = 10;
-    arrow.move(0, -arrowSpeed);
+    spritecanonred.move(0, -arrowSpeed);
 }
