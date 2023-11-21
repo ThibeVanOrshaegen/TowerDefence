@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 
 #include <SFML/Graphics.hpp>
 #include "HealthBar.h"
@@ -8,7 +9,7 @@
 #include "Laser.h"
 #include "MG.h"
 #include "EnemyManager.h"
-//#include "ShooterUpdater.h"
+#include "ShooterPositionCalculator.h"
 #include <vector>
 
 class Game {
@@ -34,7 +35,6 @@ private:
 
 
     TextureManager textureManager;
-    //ShooterUpdater shooterUpdater; // Add an instance of ShooterUpdater
 
 
     bool spriteVisibleP = false;
@@ -49,6 +49,7 @@ private:
 
     std::vector<std::unique_ptr<Weapon>> weapons;
 
+
 public:
     Game();
 
@@ -57,5 +58,5 @@ public:
     void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition);
     void updateGameLogic();
 };
-
+#endif
 

@@ -1,4 +1,5 @@
 #include "Gold.h"
+#include "TextureManager.h"
 
 Gold::Gold(sf::Vector2f GoldPosition, int maxGold)
     : currentGold(currentGold) {

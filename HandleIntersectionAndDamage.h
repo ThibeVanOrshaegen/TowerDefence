@@ -1,10 +1,13 @@
-#pragma once
+#ifndef HANDLE_INTERSECTION_AND_DAMAGE_H
+#define HANDLE_INTERSECTION_AND_DAMAGE_H
+
 
 #include <SFML/Graphics.hpp>
-#include "HealthBar.h"  // Include the necessary header for HealthBar or replace it with the correct one
+#include "HealthBar.h" 
 
 class HandleIntersectionAndDamage {
 public:
     static void handleIntersectionsAndDamage(sf::Sprite& weaponSprite, sf::Sprite& robotSprite, HealthBar& healthBar);
 };
+#endif 
 

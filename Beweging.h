@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BEWEGING_H
+#define BEWEGING_H
 
 #include <SFML/Graphics.hpp>
 
@@ -13,4 +14,5 @@ public:
 
     void move(sf::Vector2f& position);
 };
+#endif 
 

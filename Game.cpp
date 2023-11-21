@@ -29,17 +29,18 @@ Game::Game()
     laser(sf::Vector2f(610, 400)),
     mg(sf::Vector2f(65, 340))
 {
-    weapons.push_back(std::make_unique<Canon>(sf::Vector2f(100, 100)));
+    weapons.push_back(std::make_unique<Canon>(sf::Vector2f(150, 180)));
 }
 
 void Game::updateShooterRotation() {
-    sf::Vector2f shooterdriePosition = textureManager.spriteshooterdrie.getPosition();
-    sf::Vector2f shootereenPosition = textureManager.spriteshootereen.getPosition();
-    sf::Vector2f shootervierPosition = textureManager.spriteshootervier.getPosition();
 
     sf::Vector2f laserPosition = laser.spritelaser.getPosition();
     sf::Vector2f MGPosition = mg.spriteMG.getPosition();
     sf::Vector2f arrowPosition = canon.spritecanonred.getPosition();
+
+    sf::Vector2f shooterdriePosition = textureManager.spriteshooterdrie.getPosition();
+    sf::Vector2f shootereenPosition = textureManager.spriteshootereen.getPosition();
+    sf::Vector2f shootervierPosition = textureManager.spriteshootervier.getPosition();
 
     sf::Vector2f robotPositiontraag = traag.spriterobottwee.getPosition();
     sf::Vector2f robotPositionsnel = snel.spriterobottwee.getPosition();
@@ -47,58 +48,57 @@ void Game::updateShooterRotation() {
     sf::Vector2f robotPositiontraagxsnely = traagxsnely.spriterobottwee.getPosition();
 
     //////////////////////////////////////////////////////////
-    float dxeen = robotPositiontraag.x - shootereenPosition.x;
-    float dyeen = robotPositiontraag.y - shootereenPosition.y;
+    float dxeen = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraag, shootereenPosition).x;
+    float dyeen = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraag, shootereenPosition).y;
 
-    float dxdrie = robotPositiontraag.x - shooterdriePosition.x;
-    float dydrie = robotPositiontraag.y - shooterdriePosition.y;
+    float dxdrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraag, shooterdriePosition).x;
+    float dydrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraag, shooterdriePosition).y;
 
-    float dxvier = robotPositiontraag.x - shootervierPosition.x;
-    float dyvier = robotPositiontraag.y - shootervierPosition.y;
+    float dxvier = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraag, shootervierPosition).x;
+    float dyvier = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraag, shootervierPosition).y;
     //////////////////////////////////////////////////////////
-    float dxdrieeen = robotPositionsnel.x - shooterdriePosition.x;
-    float dydrieeen = robotPositionsnel.y - shooterdriePosition.y;
+    float dxdrieeen = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnel, shootereenPosition).x;
+    float dydrieeen = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnel, shootereenPosition).y;
 
-    float dxeeneen = robotPositionsnel.x - shootereenPosition.x;
-    float dyeeneen = robotPositionsnel.y - shootereenPosition.y;
+    float dxeeneen = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnel, shooterdriePosition).x;
+    float dyeeneen = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnel, shooterdriePosition).y;
 
-    float dxviereen = robotPositionsnel.x - shootervierPosition.x;
-    float dyviereen = robotPositionsnel.y - shootervierPosition.y;
+    float dxviereen = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnel, shootervierPosition).x;
+    float dyviereen = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnel, shootervierPosition).y;
     //////////////////////////////////////////////////////////
+    float dxdrietwee = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnelxtraagy, shootereenPosition).x;
+    float dydrietwee = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnelxtraagy, shootereenPosition).y;
 
-    float dxdrietwee = robotPositionsnelxtraagy.x - shooterdriePosition.x;
-    float dydrietwee = robotPositionsnelxtraagy.y - shooterdriePosition.y;
+    float dxeentwee = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnelxtraagy, shooterdriePosition).x;
+    float dyeentwee = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnelxtraagy, shooterdriePosition).y;
 
-    float dxeentwee = robotPositionsnelxtraagy.x - shootereenPosition.x;
-    float dyeentwee = robotPositionsnelxtraagy.y - shootereenPosition.y;
-
-    float dxviertwee = robotPositionsnelxtraagy.x - shootervierPosition.x;
-    float dyviertwee = robotPositionsnelxtraagy.y - shootervierPosition.y;
+    float dxviertwee = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnelxtraagy, shootervierPosition).x;
+    float dyviertwee = ShooterPositionCalculator::calculateShooterPosition(robotPositionsnelxtraagy, shootervierPosition).y;
     //////////////////////////////////////////////////////////
-    float dxdriedrie = robotPositiontraagxsnely.x - shooterdriePosition.x;
-    float dydriedrie = robotPositiontraagxsnely.y - shooterdriePosition.y;
+    float dxdriedrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraagxsnely, shootereenPosition).x;
+    float dydriedrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraagxsnely, shootereenPosition).y;
 
-    float dxeendrie = robotPositiontraagxsnely.x - shootereenPosition.x;
-    float dyeendrie = robotPositiontraagxsnely.y - shootereenPosition.y;
+    float dxeendrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraagxsnely, shooterdriePosition).x;
+    float dyeendrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraagxsnely, shooterdriePosition).y;
 
-    float dxvierdrie = robotPositiontraagxsnely.x - shootervierPosition.x;
-    float dyvierdrie = robotPositiontraagxsnely.y - shootervierPosition.y;
+    float dxvierdrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraagxsnely, shootervierPosition).x;
+    float dyvierdrie = ShooterPositionCalculator::calculateShooterPosition(robotPositiontraagxsnely, shootervierPosition).y;
     //////////////////////////////////////////////////////////
-    float distanceeen = std::sqrt(dxeen * dxeen + dyeen * dyeen);
-    float distancedrie = std::sqrt(dxdrie * dxdrie + dydrie * dydrie);
-    float distancevier = std::sqrt(dxvier * dxvier + dyvier * dyvier);
+    float distanceeen = ShooterPositionCalculator::calculateDistance(robotPositiontraag, shootereenPosition);
+    float distancedrie = ShooterPositionCalculator::calculateDistance(robotPositiontraag, shooterdriePosition);
+    float distancevier = ShooterPositionCalculator::calculateDistance(robotPositiontraag, shootervierPosition);
 
-    float distanceeeneen = std::sqrt(dxeeneen * dxeeneen + dyeeneen * dyeeneen);
-    float distancedrieeen = std::sqrt(dxdrieeen * dxdrieeen + dydrieeen * dydrieeen);
-    float distanceviereen = std::sqrt(dxviereen * dxviereen + dyviereen * dyviereen);
+    float distanceeeneen = ShooterPositionCalculator::calculateDistance(robotPositionsnel, shootereenPosition);
+    float distancedrieeen = ShooterPositionCalculator::calculateDistance(robotPositionsnel, shooterdriePosition);
+    float distanceviereen = ShooterPositionCalculator::calculateDistance(robotPositionsnel, shootervierPosition);
 
-    float distanceeentwee = std::sqrt(dxeentwee * dxeentwee + dyeentwee * dyeentwee);
-    float distancedrietwee = std::sqrt(dxdrietwee * dxdrietwee + dydrietwee * dydrietwee);
-    float distanceviertwee = std::sqrt(dxviertwee * dxviertwee + dyviertwee * dyviertwee);
+    float distanceeentwee = ShooterPositionCalculator::calculateDistance(robotPositionsnelxtraagy, shootereenPosition);
+    float distancedrietwee = ShooterPositionCalculator::calculateDistance(robotPositionsnelxtraagy, shooterdriePosition);
+    float distanceviertwee = ShooterPositionCalculator::calculateDistance(robotPositionsnelxtraagy, shootervierPosition);
 
-    float distanceeendrie = std::sqrt(dxeendrie * dxeendrie + dyeendrie * dyeendrie);
-    float distancedriedrie = std::sqrt(dxdriedrie * dxdriedrie + dydriedrie * dydriedrie);
-    float distancevierdrie = std::sqrt(dxvierdrie * dxvierdrie + dyvierdrie * dyvierdrie);
+    float distanceeendrie = ShooterPositionCalculator::calculateDistance(robotPositiontraagxsnely, shootereenPosition);
+    float distancedriedrie = ShooterPositionCalculator::calculateDistance(robotPositiontraagxsnely, shooterdriePosition);
+    float distancevierdrie = ShooterPositionCalculator::calculateDistance(robotPositiontraagxsnely, shootervierPosition);
 
     float gezondheidsnel = snel.getCurrentHealth();
     float gezondheidtraag = traag.getCurrentHealth();
@@ -197,8 +197,6 @@ void Game::run(sf::RenderWindow& window) {
 
         }
 
-
-        // Render
         window.clear();
 
         window.draw(textureManager.spriteAchtergrond);
@@ -213,22 +211,24 @@ void Game::run(sf::RenderWindow& window) {
             window.draw(*(textureManager.sprite));
             window.draw(textureManager.spritecastle);
 
+            if (spriteVisibleC)
+            {
+                window.draw(textureManager.spritepaper);
+                window.draw(textureManager.spritevbCannon);
+                window.draw(textureManager.spritevbCannon2);
+                window.draw(textureManager.spritevbCannon3);
 
-            /* window.draw(textureManager.spritepaper);
-             window.draw(textureManager.spritevbCannon);
-             window.draw(textureManager.spritevbCannon2);
-             window.draw(textureManager.spritevbCannon3);
+                window.draw(textureManager.spritevbMG);
+                window.draw(textureManager.spritevbMG2);
+                window.draw(textureManager.spritevbMG3);
 
-             window.draw(textureManager.spritevbMG);
-             window.draw(textureManager.spritevbMG2);
-             window.draw(textureManager.spritevbMG3);
+                window.draw(textureManager.spritevbMissile_Launcher);
+                window.draw(textureManager.spritevbMissile_Launcher2);
+                window.draw(textureManager.spritevbMissile_Launcher3);
+            }
+            else
 
-             window.draw(textureManager.spritevbMissile_Launcher);
-             window.draw(textureManager.spritevbMissile_Launcher2);
-             window.draw(textureManager.spritevbMissile_Launcher3);*/
-
-             //if (spriteVisibleC)
-             //{
+            {
             window.draw(textureManager.spritemudeen);
             window.draw(textureManager.spritemudtwee);
             window.draw(textureManager.spritemuddrie);
@@ -263,7 +263,6 @@ void Game::run(sf::RenderWindow& window) {
             window.draw(textureManager.spriteshootertwee);
             window.draw(textureManager.spriteshooterdrie);
             window.draw(textureManager.spriteshootervier);
-
 
             updateShooterRotation();
 
@@ -318,7 +317,7 @@ void Game::run(sf::RenderWindow& window) {
             window.draw(redhealthBar_drie.bar);
             window.draw(redhealthBar_vier.bar);
 
-            //}
+            }
         }
 
         window.display();

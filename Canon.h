@@ -1,7 +1,7 @@
-#pragma once
+#ifndef CANON_H
+#define CANON_H
 
 #include "Weapon.h"
-#include "ShooterUpdater.h"
 #include "TextureManager.h"
 
 class Canon : public Weapon {
@@ -19,4 +19,5 @@ public:
     void update() override;
 
 };
+#endif 
 

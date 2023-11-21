@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ENEMY_MANAGER_H
+#define ENEMY_MANAGER_H
+
 #include <SFML/Graphics.hpp>
 #include "Weapon.h"
 
@@ -15,3 +17,5 @@ public:
     void updateEnemyInteractions(const sf::Vector2f& laserPosition, const sf::Vector2f& canonPosition, const sf::Vector2f& mgPosition);
     void checkCollisions();
 };
+
+#endif 

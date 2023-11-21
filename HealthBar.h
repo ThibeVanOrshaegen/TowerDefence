@@ -1,4 +1,6 @@
-#pragma once
+#ifndef HEALTH_BAR_H
+#define HEALTH_BAR_H
+
 #include <SFML/Graphics.hpp>
 
 class HealthBar
@@ -15,4 +17,5 @@ public:
     void applyDamage();
     void updatePosition(const sf::Vector2f& newPosition);
 };
+#endif
 

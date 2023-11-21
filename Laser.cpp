@@ -1,4 +1,5 @@
 #include "Laser.h"
+#include "TextureManager.h"
 
 Laser::Laser(sf::Vector2f initialPosition) : spritelaser(), laserPosition(initialPosition) {
     textureManager.texturelaser.loadFromFile("./Missile.png");

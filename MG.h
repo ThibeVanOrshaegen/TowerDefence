@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MG_H
+#define MG_H
 
 #include "Weapon.h"
 #include "TextureManager.h"
@@ -16,4 +17,5 @@ public:
     void fire(sf::Vector2f shootervierPosition) override;
     void update() override;
 };
+#endif 
 

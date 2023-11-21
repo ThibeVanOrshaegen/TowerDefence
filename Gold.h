@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GOLD_H
+#define GOLD_H
 
 #include "TextureManager.h"
 
@@ -12,4 +13,5 @@ public:
 
     Gold(sf::Vector2f GoldPosition, int maxGold);
 };
+#endif
 

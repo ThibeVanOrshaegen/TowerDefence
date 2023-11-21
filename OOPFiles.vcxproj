@@ -142,7 +142,7 @@
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="MG.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShooterUpdater.cpp" />
+    <ClCompile Include="ShooterPositionCalculator.cpp" />
     <ClCompile Include="Shooterupdaterdrie.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
@@ -158,7 +158,7 @@
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="MG.h" />
-    <ClInclude Include="ShooterUpdater.h" />
+    <ClInclude Include="ShooterPositionCalculator.h" />
     <ClInclude Include="Shooterupdaterdrie.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Waves.h" />

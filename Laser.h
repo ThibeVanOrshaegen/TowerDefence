@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LASER_H
+#define LASER_H
 
 #include "Weapon.h"
 #include "TextureManager.h"
@@ -7,7 +8,6 @@ class Laser : public Weapon {
 private:
     sf::Vector2f laserPosition;
     TextureManager textureManager;
-    //sf::Sprite spritelaser;
 
 public:
     sf::Sprite spritelaser;
@@ -17,8 +17,6 @@ public:
     void fire(sf::Vector2f shootereenPosition) override;
     void update() override;
 
-    //sf::Vector2f getPosition() const {
-       // return spritelaser.getPosition();
-    //}
 };
+#endif
 

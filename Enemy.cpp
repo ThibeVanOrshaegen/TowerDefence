@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "TextureManager.h"
 
 Enemy::Enemy(sf::Vector2f initialPosition, sf::Vector2f size, int RandommaxHealth, float xVelocity, float yVelocity)
     : HealthBar(initialPosition, size, maxHealth), beweging(xVelocity, yVelocity) {

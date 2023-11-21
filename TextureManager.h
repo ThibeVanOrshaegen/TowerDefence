@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TEXTURE_MANAGER_H
+#define TEXTURE_MANAGER_H
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
@@ -156,8 +158,8 @@ public:
     sf::Texture textureMG;
     sf::Sprite spriteMG;
 
-
     TextureManager();
     ~TextureManager();
 };
+#endif 
 
