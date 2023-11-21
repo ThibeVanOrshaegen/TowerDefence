@@ -148,6 +148,7 @@ public:
     sf::Texture texturelaser;
     sf::Sprite spritelaser;
 
+
     //MG
     sf::Texture textureMG;
     sf::Sprite spriteMG;

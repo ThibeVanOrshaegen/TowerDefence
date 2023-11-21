@@ -8,6 +8,7 @@
 #include "Laser.h"
 #include "MG.h"
 #include "EnemyManager.h"
+//#include "ShooterUpdater.h"
 #include <vector>
 
 class Game {
@@ -29,18 +30,25 @@ private:
 
     Canon canon;
     Laser laser;
+    Laser lasereen;
+    Laser lasertwee;
+    Laser laserdrie;
     MG mg;
 
     EnemyManager enemyManager;
 
     TextureManager textureManager;
+    //ShooterUpdater shooterUpdater; // Add an instance of ShooterUpdater
+
 
     bool spriteVisibleP = false;
     bool spriteVisibleC = false;
 
     bool spriteVisiblecanon = false;
+    bool spriteVisiblelaser = false;
     bool spriteVisiblelasereen = false;
     bool spriteVisiblelasertwee = false;
+    bool spriteVisiblelaserdrie = false;
     bool spriteVisiblemg = false;
 
     std::vector<std::unique_ptr<Weapon>> weapons;
