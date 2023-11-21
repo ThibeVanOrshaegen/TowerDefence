@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Beweging.h"
 #include "TextureManager.h"
 
 Enemy::Enemy(sf::Vector2f initialPosition, sf::Vector2f size, int RandommaxHealth, float xVelocity, float yVelocity)
@@ -7,6 +8,7 @@ Enemy::Enemy(sf::Vector2f initialPosition, sf::Vector2f size, int RandommaxHealt
     spriterobottwee.setTexture(textureManager.texturerobottwee);
     spriterobottwee.setPosition(initialPosition);
     spriterobottwee.setScale(0.3f, 0.3f);
+
 }
 
 void Enemy::update() {

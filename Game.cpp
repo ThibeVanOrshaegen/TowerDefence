@@ -32,6 +32,8 @@ Game::Game()
     weapons.push_back(std::make_unique<Canon>(sf::Vector2f(150, 180)));
 }
 
+
+
 void Game::updateShooterRotation() {
 
     sf::Vector2f laserPosition = laser.spritelaser.getPosition();

@@ -10,9 +10,10 @@
 #include "MG.h"
 #include "EnemyManager.h"
 #include "ShooterPositionCalculator.h"
+#include "Weapon.h"
 #include <vector>
 
-class Game {
+class Game{
 private:
     HealthBar healthBar_een;
     HealthBar healthBar_twee;

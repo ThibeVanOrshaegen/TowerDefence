@@ -10,7 +10,10 @@ private:
     TextureManager textureManager;
     Beweging beweging;
 
+
 public:
+    virtual ~Enemy() = default;
+
     sf::Sprite spriterobottwee;
 
     Enemy(sf::Vector2f initialPosition, sf::Vector2f size, int RandommaxHealth, float xVelocity, float yVelocity);

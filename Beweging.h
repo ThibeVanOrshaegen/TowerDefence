@@ -2,8 +2,9 @@
 #define BEWEGING_H
 
 #include <SFML/Graphics.hpp>
+class Enemy;
 
-class Beweging {
+class Beweging{
 private:
     float xVelocity;
     float yVelocity;

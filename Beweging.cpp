@@ -2,6 +2,7 @@
 
 Beweging::Beweging(float xVel, float yVel) : xVelocity(xVel), yVelocity(yVel), originalYVelocity(yVel) {}
 
+
 void Beweging::move(sf::Vector2f& position) {
     if (position.x < 170 && (position.y > 100 && position.y < 420))
     {
