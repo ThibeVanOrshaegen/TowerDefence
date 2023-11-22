@@ -14,7 +14,7 @@ public:
 
     Laser(sf::Vector2f initialPosition);
 
-    void fire(sf::Vector2f shootereenPosition) override;
+    void fire(sf::Vector2f shootereenPosition) override; //polymorfisme
     void update() override;
 
 };

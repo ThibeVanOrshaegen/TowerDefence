@@ -158,8 +158,8 @@ public:
     sf::Texture textureMG;
     sf::Sprite spriteMG;
 
-    TextureManager();
-    ~TextureManager();
+    TextureManager();//constructor
+    ~TextureManager(); //destructor
 };
 #endif 
 

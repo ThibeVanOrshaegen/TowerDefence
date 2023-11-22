@@ -14,6 +14,7 @@
 #include <vector>
 
 
+
 class Game{
 private:
     HealthBar healthBar_een;
@@ -49,7 +50,7 @@ private:
     bool spriteVisiblelaserdrie = false;
     bool spriteVisiblemg = false;
 
-    std::vector<std::unique_ptr<Weapon>> weapons;
+    std::vector<std::unique_ptr<Weapon>> weapons; //class composition, kan niet werken zonder
 
 
 public:

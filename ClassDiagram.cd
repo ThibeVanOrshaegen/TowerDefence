@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Canon" Collapsed="true">
-    <Position X="3.5" Y="1.75" Width="1.5" />
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAQAAAAAAAAAgAAABBAAAAAAEAAA=</HashCode>
       <FileName>Canon.h</FileName>
@@ -29,14 +29,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyManager" Collapsed="true">
-    <Position X="1.25" Y="1.75" Width="1.5" />
+    <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAESAAAIAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>EnemyManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Game" Collapsed="true">
-    <Position X="7" Y="3.5" Width="1.5" />
+    <Position X="7.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAgBAgAAEMAYAAAkAAiAAgQwBAABQCCACFICABAA=</HashCode>
       <FileName>Game.h</FileName>
@@ -50,35 +50,35 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HandleIntersectionAndDamage" Collapsed="true">
-    <Position X="2.5" Y="4.75" Width="1.5" />
+    <Position X="4.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>HandleIntersectionAndDamage.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Laser" Collapsed="true">
-    <Position X="6" Y="1.75" Width="1.5" />
+    <Position X="6.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAEBAABAAAEIAA=</HashCode>
       <FileName>Laser.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MG" Collapsed="true">
-    <Position X="8" Y="1.75" Width="1.5" />
+    <Position X="8.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAQAEAAAAAAAAAAAAIAAAAAAABAAAAAAEAAA=</HashCode>
       <FileName>MG.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ShooterPositionCalculator" Collapsed="true">
-    <Position X="10" Y="1.75" Width="1.5" />
+    <Position X="10.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ShooterPositionCalculator.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ShooterUpdaterdrie" Collapsed="true">
-    <Position X="7" Y="4.75" Width="1.5" />
+    <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shooterupdaterdrie.h</FileName>
