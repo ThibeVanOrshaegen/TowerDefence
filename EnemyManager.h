@@ -3,19 +3,20 @@
 
 #include <SFML/Graphics.hpp>
 #include "Weapon.h"
+namespace Towerdefense
+{
+    class EnemyManager : public Weapon {
+    private:
 
-class EnemyManager : public Weapon{
-private:
+        Weapon& laser;
+        Weapon& canon;
+        Weapon& mg;
 
-    Weapon& laser;
-    Weapon& canon;
-    Weapon& mg;
+    public:
+        EnemyManager(Weapon& laser, Weapon& canon, Weapon& mg);
 
-public:
-    EnemyManager(Weapon& laser, Weapon& canon, Weapon& mg);
-
-    void updateEnemyInteractions(const sf::Vector2f& laserPosition, const sf::Vector2f& canonPosition, const sf::Vector2f& mgPosition);
-    void checkCollisions();
-};
-
+        void updateEnemyInteractions(const sf::Vector2f& laserPosition, const sf::Vector2f& canonPosition, const sf::Vector2f& mgPosition);
+        void checkCollisions();
+    };
+}
 #endif 

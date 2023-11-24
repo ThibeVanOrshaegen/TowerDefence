@@ -1,4 +1,4 @@
-#include "Gold.h"
+/*#include "Gold.h"
 #include "TextureManager.h"
 
 Gold::Gold(sf::Vector2f GoldPosition, int maxGold)
@@ -7,3 +7,4 @@ Gold::Gold(sf::Vector2f GoldPosition, int maxGold)
     textureManager.spritegold.setTexture(textureManager.texturelaser);
     textureManager.spritegold.setPosition(GoldPosition.x, GoldPosition.y);
 }
+*/

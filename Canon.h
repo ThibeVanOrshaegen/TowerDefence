@@ -3,21 +3,23 @@
 
 #include "Weapon.h"
 #include "TextureManager.h"
+namespace Towerdefense
+{
+    class Canon : public Weapon {
+    private:
+        sf::Vector2f arrowPosition;
+        TextureManager textureManager;
 
-class Canon : public Weapon {
-private:
-    sf::Vector2f arrowPosition;
-    TextureManager textureManager;
+    public:
 
-public:
+        sf::Sprite spritecanonred;
 
-    sf::Sprite spritecanonred;
+        Canon(sf::Vector2f initialPosition);
 
-    Canon(sf::Vector2f initialPosition);
+        void fire(sf::Vector2f shooterPosition) override;
+        void update() override;
 
-    void fire(sf::Vector2f shooterPosition) override;
-    void update() override;
-
-};
+    };
+}
 #endif 
 

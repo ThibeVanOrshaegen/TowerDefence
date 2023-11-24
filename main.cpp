@@ -14,6 +14,8 @@
 #include <random>
 #include <iostream>
 
+using namespace Towerdefense;
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(1180, 720), "My Program");
     Game game;

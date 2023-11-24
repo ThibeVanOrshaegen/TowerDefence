@@ -11,10 +11,10 @@
 #include "EnemyManager.h"
 #include "ShooterPositionCalculator.h"
 #include "Weapon.h"
+
 #include <vector>
-
-
-
+namespace Towerdefense
+{
 class Game{
 private:
     HealthBar healthBar_een;
@@ -50,7 +50,7 @@ private:
     bool spriteVisiblelaserdrie = false;
     bool spriteVisiblemg = false;
 
-    std::vector<std::unique_ptr<Weapon>> weapons; //class composition, kan niet werken zonder
+    std::vector<std::unique_ptr<Weapon>> weapons; //class composition, kan niet werken zonder, is dit een container class?
 
 
 public:
@@ -61,5 +61,6 @@ public:
     void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition);
     void updateGameLogic();
 };
+}
 #endif
 

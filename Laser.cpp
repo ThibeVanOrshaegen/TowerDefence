@@ -1,6 +1,7 @@
 #include "Laser.h"
 #include "TextureManager.h"
-
+namespace Towerdefense
+{
 Laser::Laser(sf::Vector2f initialPosition) : spritelaser(), laserPosition(initialPosition) {
     textureManager.texturelaser.loadFromFile("./Missile.png");
     spritelaser.setTexture(textureManager.texturelaser);
@@ -10,7 +11,7 @@ Laser::Laser(sf::Vector2f initialPosition) : spritelaser(), laserPosition(initia
 }
 
 void Laser::fire(sf::Vector2f shootereenPosition) {
-    float laserSpeed = 7;
+    const float laserSpeed = 7;
     laserPosition.y += laserSpeed;
     laserPosition.x += laserSpeed;
 
@@ -23,6 +24,7 @@ void Laser::fire(sf::Vector2f shootereenPosition) {
 }
 
 void Laser::update() {
-    float laserSpeed = 5;
+    const float laserSpeed = 5;
     spritelaser.move(-laserSpeed, -laserSpeed);
+}
 }

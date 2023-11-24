@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Beweging.cpp" />
     <ClCompile Include="Canon.cpp" />
+    <ClCompile Include="Data.cpp" />
     <ClCompile Include="drawSpriteIfVisible.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Beweging.h" />
     <ClInclude Include="Canon.h" />
+    <ClInclude Include="Data.h" />
     <ClInclude Include="drawSpriteIfVisible.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />

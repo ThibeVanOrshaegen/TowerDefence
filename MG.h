@@ -3,19 +3,21 @@
 
 #include "Weapon.h"
 #include "TextureManager.h"
+namespace Towerdefense
+{
+    class MG : public Weapon {
+    private:
+        sf::Vector2f MGPosition;
+        TextureManager textureManager;
 
-class MG : public Weapon {
-private:
-    sf::Vector2f MGPosition;
-    TextureManager textureManager;
+    public:
+        sf::Sprite spriteMG;
 
-public:
-    sf::Sprite spriteMG;
+        MG(sf::Vector2f initialPosition);
 
-    MG(sf::Vector2f initialPosition);
-
-    void fire(sf::Vector2f shootervierPosition) override;
-    void update() override;
-};
+        void fire(sf::Vector2f shootervierPosition) override;
+        void update() override;
+    };
+}
 #endif 
 

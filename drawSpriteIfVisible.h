@@ -3,9 +3,12 @@
 
 #include <SFML/Graphics.hpp>
 #include "HealthBar.h"
+namespace Towerdefense
+{
 
-class drawSpriteIfVisible : public HealthBar{
-public:
-    static void drawSpriteVisible(sf::RenderWindow& window, sf::Sprite& sprite, bool isVisible);
-};
+    class drawSpriteIfVisible : public HealthBar {
+    public:
+        static void drawSpriteVisible(sf::RenderWindow& window, sf::Sprite& sprite, bool isVisible);
+    };
+}
 #endif
