@@ -8,6 +8,7 @@
 #include "drawSpriteIfVisible.h"
 #include "Data.h"
 #include <iostream>
+#include <thread>
 
 #define M_PI 3.14159265358979323846
 
@@ -136,14 +137,33 @@ namespace Towerdefense
         textureManager.spriteshootervier.setPosition(fixedPositionvier);
     }
 
-    void Game::useWeapon(Weapon & weapon, sf::Vector2f shooterPosition)
+    void Game::useWeapon(Weapon & weapon, sf::Vector2f shooterPosition,int depth)
     {
+        if (depth <= 0) {
+            return;
+        }
+
+        std::vector<std::thread> threads;
+
         weapon.fire(shooterPosition);
+
+        for (int i = 0; i < 3; ++i) {
+            auto lambda = [this, &weapon, &shooterPosition, depth]() {
+                useWeapon(weapon, shooterPosition, depth - 1);
+                };
+            threads.push_back(std::thread(lambda));
+        }
+
+        for (auto& thread : threads) {
+            thread.join();
+        }
+
     }
 
     void Game::run(sf::RenderWindow & window) {
         window.setFramerateLimit(60);
         sf::Vector2f shooterPosition;
+        std::vector<std::thread> threads;
 
         bool isRKeyPressed = false;
         bool isPKeyPressed = false;
@@ -277,9 +297,9 @@ namespace Towerdefense
                     snelxtraagy.update();
                     traagxsnely.update();
 
-                    useWeapon(laser, textureManager.spriteshooterdrie.getPosition());
-                    useWeapon(mg, textureManager.spriteshootervier.getPosition());
-                    useWeapon(canon, textureManager.spriteshootereen.getPosition());
+                    useWeapon(laser, shooterPosition, 1);
+                    useWeapon(mg, shooterPosition, 2);
+                    useWeapon(canon, shooterPosition, 1);
 
                     spriteVisiblelaser = true;
                     drawSpriteIfVisible::drawSpriteVisible(window, laser.spritelaser, spriteVisiblelaser);

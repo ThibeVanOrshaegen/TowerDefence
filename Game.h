@@ -58,7 +58,7 @@ public:
 
     void updateShooterRotation();
     void run(sf::RenderWindow& window);
-    void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition);
+    void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition,int depth);
     void updateGameLogic();
 };
 }
