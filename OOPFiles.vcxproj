@@ -26,6 +26,7 @@
     <ClInclude Include="drawSpriteIfVisible.h" />
     <ClInclude Include="EnemyOne.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gold.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beweging.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="drawSpriteIfVisible.cpp" />
     <ClCompile Include="EnemyOne.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gold.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
