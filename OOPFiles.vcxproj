@@ -30,6 +30,7 @@
     <ClInclude Include="HandleIntersectionAndDamage.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Laser.h" />
+    <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beweging.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="HandleIntersectionAndDamage.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
