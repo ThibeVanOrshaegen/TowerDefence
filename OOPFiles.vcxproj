@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Beweging.h" />
     <ClInclude Include="Canon.h" />
+    <ClInclude Include="CreatingWave.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beweging.cpp" />
