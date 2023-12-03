@@ -23,11 +23,13 @@
     <ClInclude Include="Canon.h" />
     <ClInclude Include="CreatingWave.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="drawSpriteIfVisible.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beweging.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="drawSpriteIfVisible.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
