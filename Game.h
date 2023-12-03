@@ -11,6 +11,7 @@
 #include "EnemyManager.h"
 #include "ShooterPositionCalculator.h"
 #include "Weapon.h"
+#include "Waves.h"
 
 #include <vector>
 namespace Towerdefense
@@ -36,7 +37,8 @@ private:
     Laser laser;
     MG mg;
 
-
+    std::vector<Wave> waves; // Vector to store different waves
+    int currentWaveIndex;
     TextureManager textureManager;
 
 
@@ -60,6 +62,10 @@ public:
     void run(sf::RenderWindow& window);
     void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition,int depth);
     void updateGameLogic();
+    void startNextWave();
+
+    // Function to update the current wave
+    void updateCurrentWave();
 };
 }
 #endif

@@ -146,6 +146,7 @@
     <ClCompile Include="ShooterPositionCalculator.cpp" />
     <ClCompile Include="Shooterupdaterdrie.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Waves.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Beweging.h" />

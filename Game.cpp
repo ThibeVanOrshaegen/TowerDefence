@@ -161,13 +161,15 @@ namespace Towerdefense
     }
 
     void Game::run(sf::RenderWindow & window) {
+
         window.setFramerateLimit(60);
         sf::Vector2f shooterPosition;
-        std::vector<std::thread> threads;
+
 
         bool isRKeyPressed = false;
         bool isPKeyPressed = false;
         bool isCKeyPressed = false;
+        //nog een bool voor press zodat criteria behaald is
 
         redhealthBar_een.bar.setFillColor(sf::Color::Green);
         redhealthBar_twee.bar.setFillColor(sf::Color::Green);
