@@ -28,6 +28,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gold.h" />
     <ClInclude Include="HandleIntersectionAndDamage.h" />
+    <ClInclude Include="HealthBar.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Beweging.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="HandleIntersectionAndDamage.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
