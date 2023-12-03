@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Beweging.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Beweging.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -129,47 +135,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Beweging.cpp" />
-    <ClCompile Include="Canon.cpp" />
-    <ClCompile Include="Data.cpp" />
-    <ClCompile Include="drawSpriteIfVisible.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyManager.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gold.cpp" />
-    <ClCompile Include="HandleIntersectionAndDamage.cpp" />
-    <ClCompile Include="HealthBar.cpp" />
-    <ClCompile Include="Laser.cpp" />
-    <ClCompile Include="MG.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShooterPositionCalculator.cpp" />
-    <ClCompile Include="Shooterupdaterdrie.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="Waves.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Beweging.h" />
-    <ClInclude Include="Canon.h" />
-    <ClInclude Include="Data.h" />
-    <ClInclude Include="drawSpriteIfVisible.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EnemyManager.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Gold.h" />
-    <ClInclude Include="HandleIntersectionAndDamage.h" />
-    <ClInclude Include="HealthBar.h" />
-    <ClInclude Include="Laser.h" />
-    <ClInclude Include="MG.h" />
-    <ClInclude Include="ShooterPositionCalculator.h" />
-    <ClInclude Include="Shooterupdaterdrie.h" />
-    <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="Waves.h" />
-    <ClInclude Include="Weapon.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
