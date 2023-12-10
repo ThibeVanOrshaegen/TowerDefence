@@ -1,300 +1,936 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <stdexcept>
+#include <thread>
+#include <vector>
+#include <time.h>
+#include <string>
+#include "drawSpriteIfVisible.h"
+#include "drawSpriteIfVisibleshoot.h"
+#include "HandleIntersectionAndDamage.h"
+#include "Updaterotation.h"
+#include "Gold.h"
+#include "HealthBar.h"
 #include "Game.h"
+#include "Wave.h"
+#include <cmath>
 
 #define M_PI 3.14159265358979323846
 
-Game::Game()
-    : healthBar_een(sf::Vector2f(100, 400), sf::Vector2f(70, 10), 50),
-    healthBar_twee(sf::Vector2f(800, 400), sf::Vector2f(70, 10), 70),
-    healthBar_drie(sf::Vector2f(100, 400), sf::Vector2f(70, 10), 50),
-    healthBar_vier(sf::Vector2f(800, 400), sf::Vector2f(70, 10), 70),
-    redhealthBar_een(sf::Vector2f(100, 400), sf::Vector2f(70, 10), 50),
-    redhealthBar_twee(sf::Vector2f(800, 400), sf::Vector2f(70, 10), 70),
-    redhealthBar_drie(sf::Vector2f(100, 400), sf::Vector2f(70, 10), 50),
-    redhealthBar_vier(sf::Vector2f(800, 400), sf::Vector2f(70, 10), 70),
-    snel(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 30, 9.0f, 9.0f),
-    traag(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 70, 2.5f, 2.5f),
-    snelxtraagy(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 30, 5.0f, 2.5f),
-    traagxsnely(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 70, 2.5f, 5.0f),
-    canon(sf::Vector2f(150, 180)),
-    laser(sf::Vector2f(610, 400)),
-    mg(sf::Vector2f(65, 340)) {
-}
+using namespace std;
+namespace Towerdefense
+{
+    Game::Game()
+        :healthBar_een(sf::Vector2f(100, 400), sf::Vector2f(70, 10), 50), //parameterized constructors //default value in function definition '50'
+        redhealthBar_een_copy(healthBar_een), //Copy constructor
 
-void Game::updateShooterRotation() {
-    sf::Vector2f shooterdriePosition = textureManager.spriteshooterdrie.getPosition();
-    sf::Vector2f shootereenPosition = textureManager.spriteshootereen.getPosition();
-    sf::Vector2f shootervierPosition = textureManager.spriteshootervier.getPosition();
+        healthBar_twee(sf::Vector2f(100, 400), sf::Vector2f(70, 10), 30), //parameterized constructors
+        redhealthBar_twee_copy(healthBar_twee), //Copy constructor
 
-    sf::Vector2f laserPosition = laser.spritelaser.getPosition();
-    sf::Vector2f MGPosition = mg.spriteMG.getPosition();
-    sf::Vector2f arrowPosition = canon.arrow.getPosition();
+        snel(new EnemyOne(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 10, 3.0f, 3.0f)), //door new automatisch gebruik van nullptr?
+        traag(new EnemyOne(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 10, 3.0f, 3.0f)),
+        canonkogel(new Canonshooting(sf::Vector2f(150, 180))),
+        canonkogeltwee(new Canonshooting(sf::Vector2f(150, 180))),
+        canonkogeldrie(new Canonshooting(sf::Vector2f(150, 180))),
+        canonkogelvier(new Canonshooting(sf::Vector2f(150, 180))),
+        canonkogelvijf(new Canonshooting(sf::Vector2f(150, 180))),
+        canonkogelzes(new Canonshooting(sf::Vector2f(150, 180))),
 
-    sf::Vector2f robotPosition = traag.spriterobottwee.getPosition();
+        laserkogel(new Lasershooting(sf::Vector2f(150, 180))),
+        laserkogeltwee(new Lasershooting(sf::Vector2f(150, 180))),
+        laserkogeldrie(new Lasershooting(sf::Vector2f(150, 180))),
+        laserkogelvier(new Lasershooting(sf::Vector2f(150, 180))),
+        laserkogelvijf(new Lasershooting(sf::Vector2f(150, 180))),
+        laserkogelzes(new Lasershooting(sf::Vector2f(150, 180))),
 
-    float dxdrie = robotPosition.x - shooterdriePosition.x;
-    float dydrie = robotPosition.y - shooterdriePosition.y;
-
-    float dxeen = robotPosition.x - shootereenPosition.x;
-    float dyeen = robotPosition.y - shootereenPosition.y;
-
-    float dxvier = robotPosition.x - shootervierPosition.x;
-    float dyvier = robotPosition.y - shootervierPosition.y;
-
-
-
-    float distancedrie = std::sqrt(dxdrie * dxdrie + dydrie * dydrie);
-    float distanceeen = std::sqrt(dxeen * dxeen + dyeen * dyeen);
-    float distancevier = std::sqrt(dxvier * dxvier + dyvier * dyvier);
-
-    if (distancedrie < 150.0f)
+        canonplaats(new Canon(sf::Vector2f(500, 260))),
+        canonplaatstwee(new Canon(sf::Vector2f(500, 260))),
+        canonplaatsdrie(new Canon(sf::Vector2f(500, 260))),
+        canonplaatsvier(new Canon(sf::Vector2f(500, 260))),
+        canonplaatsvijf(new Canon(sf::Vector2f(500, 260))),
+        canonplaatszes(new Canon(sf::Vector2f(500, 260))),
+        laserplaats(new Laser(sf::Vector2f(150, 180))),
+        gold(10)
     {
-        float angledrie = atan2(dydrie, dxdrie) * 180 / M_PI;
-        textureManager.spriteshooterdrie.setRotation(angledrie + 90);
-        textureManager.spriteshooterdrie.setOrigin(textureManager.spriteshooterdrie.getLocalBounds().width / 2, textureManager.spriteshooterdrie.getLocalBounds().height / 2);
-
-        laser.spritelaser.setRotation(angledrie + 90); //werkt
-        laser.spritelaser.setOrigin(laser.spritelaser.getLocalBounds().width / 2, laser.spritelaser.getLocalBounds().height / 2); // Instelling van de oorsprong
-
-        spriteVisiblelaser = true;
 
     }
 
-    if (distanceeen < 300.0f)
+    Towerdefense::Gold<int> goldInt(20);
+    Towerdefense::Gold<double> goldDouble(1.0);
+
+    
+    Game::~Game()
     {
-        float angleeen = atan2(dyeen, dxeen) * 180 / M_PI;
-        textureManager.spriteshootereen.setRotation(angleeen + 270);
-        textureManager.spriteshootereen.setOrigin(textureManager.spriteshootereen.getLocalBounds().width / 2, textureManager.spriteshootereen.getLocalBounds().height / 2);
+        // Release dynamically allocated memory
+        delete snel;
+        delete traag;
+        delete canonkogel;//een,twee,...
+        delete laserkogel;
+    }
+    // Initialize static members
+    bool Game::isPKeyPressed = false;
+    bool Game::isGKeyPressed = false;
 
-        canon.arrow.setRotation(angleeen + 270);
-        canon.arrow.setOrigin(canon.arrow.getLocalBounds().width / 2, canon.arrow.getLocalBounds().height / 2);
+    bool Game::isKKeyPressed = false;
+    bool Game::isLkeyPressed = false;
+    bool Game::isQKeyPressed = false;
+    bool Game::isCKeyPressed = false;
+    bool Game::isSKeyPressed = false;
+    bool Game::isMKeyPressed = false;
 
-        spriteVisiblecanon = true;
+    bool Game::isEKeyPressed = false;
+    bool Game::isTKeyPressed = false;
+    bool Game::isDKeyPressed = false;
+    bool Game::isVKeyPressed = false;
+    bool Game::isWKeyPressed = false;
+    bool Game::isZKeyPressed = false;
+
+    bool Game::spriteVisibleP = false;
+    bool Game::spriteVisibleG = false;
+    bool Game::spriteVisibleO = false;
+
+    bool Game::spriteVisibleC = false;
+    bool Game::spriteVisibleCtwee = false;
+    bool Game::spriteVisibleCdrie = false;
+    bool Game::spriteVisibleCvier = false;
+    bool Game::spriteVisibleCvijf = false;
+    bool Game::spriteVisibleCzes = false;
+
+    bool Game::spriteVisibleRotation = false;
+
+    bool Game::spriteVisibleL = false;
+    bool Game::spriteVisibleLtwee = false;
+    bool Game::spriteVisibleLdrie = false;
+    bool Game::spriteVisibleLvier = false;
+    bool Game::spriteVisibleLvijf = false;
+    bool Game::spriteVisibleLzes = false;
+
+    bool Game::spriteVisibleQ = false;
+
+    bool Game::spriteVisibleE = false;
+    bool Game::spriteVisibleT = false;
+    bool Game::spriteVisibleD = false;
+    bool Game::spriteVisibleV = false;
+    bool Game::spriteVisibleW = false;
+    bool Game::spriteVisibleZ = false;
+
+    bool Game::shooterposition = false;
+
+    bool Game::EshootPosition = false;
+    bool Game::TshootPosition = false;
+    bool Game::DshootPosition = false;
+    bool Game::VshootPosition = false;
+    bool Game::WshootPosition = false;
+    bool Game::ZshootPosition = false;
+
+    bool Game::ELshootPosition = false;
+    bool Game::TLshootPosition = false;
+    bool Game::DLshootPosition = false;
+    bool Game::VLshootPosition = false;
+    bool Game::WLshootPosition = false;
+    bool Game::ZLshootPosition = false;
+
+    bool Game::PlaceEIsEmty = true;
+    bool Game::PlaceTIsEmty = true;
+    bool Game::PlaceDIsEmty = true;
+    bool Game::PlaceVIsEmty = true;
+    bool Game::PlaceWIsEmty = true;
+    bool Game::PlaceZIsEmty = true;
+
+    bool Game::WaveOneCompleet = false;
+
+    void Game::useWeapon(Weapon& weapon, sf::Vector2f shooterPosition)
+    {
+        weapon.fire(shooterPosition);
     }
 
-    if (distancevier < 100.0f)
-    {
-        float anglevier = atan2(dyvier, dxvier) * 90 / M_PI;
-        textureManager.spriteshootervier.setRotation(anglevier + 90);
-        textureManager.spriteshootervier.setOrigin(textureManager.spriteshootervier.getLocalBounds().width / 2, textureManager.spriteshootervier.getLocalBounds().height / 2);
+    void Game::updateEnemies() {
 
-        mg.spriteMG.setRotation(anglevier + 90); //werkt
-        mg.spriteMG.setOrigin(mg.spriteMG.getLocalBounds().width / 2, mg.spriteMG.getLocalBounds().height / 2);
+        std::thread snelUpdateThread(&EnemyOne::update, snel);
+        std::thread traagUpdateThread(&EnemyOne::update, traag);
 
-        spriteVisiblemg = true;
+        // Wait for threads to finish before proceeding
+        snelUpdateThread.join();
+        traagUpdateThread.join();
 
-    }
-    else if (distancedrie > 150.0)
-    {
-        textureManager.spriteshooterdrie.setRotation(180);
-        spriteVisiblelaser = false;
-    }
-    else if (distanceeen > 300.0f)
-    {
-        textureManager.spriteshootereen.setRotation(180);
-        spriteVisiblecanon = false;
-    }
-    else if (distancevier > 50.0f)
-    {
-        textureManager.spriteshootervier.setRotation(180);
-        spriteVisiblemg = false;
+        /*if (snel->spriteEnemyOne.getPosition().x >= 1002) {
+
+            snel->resetPosition();
+
+            redhealthBar_een_copy.currentHealth = 50; //terug opnieuw spam zo blijft spel altijd doorgaan
+        }*/
 
     }
-    else
-    {
-        textureManager.spriteshooterdrie.setRotation(180);
-        textureManager.spriteshootereen.setRotation(180);
-        textureManager.spriteshootervier.setRotation(180);
+    void Game::updateHandleIntersectionAndDamage() {//canonkogeltwee,...
 
+        HandleIntersectionAndDamage::handleIntersectionsAndDamage(laserkogel->spriteLaserKogeltwee, snel->spriteEnemyOne, redhealthBar_een_copy); //redhealthBar_een hoort bij enemey_one
+        HandleIntersectionAndDamage::handleIntersectionsAndDamage(canonkogel->spriteCanonKogeltwee, snel->spriteEnemyOne, redhealthBar_een_copy); //handle.. is 4
+
+        HandleIntersectionAndDamage::handleIntersectionsAndDamage(laserkogel->spriteLaserKogeltwee, traag->spriteEnemyOne, redhealthBar_twee_copy); //redhealthBar_een hoort bij enemey_one
+        HandleIntersectionAndDamage::handleIntersectionsAndDamage(canonkogel->spriteCanonKogeltwee, traag->spriteEnemyOne, redhealthBar_twee_copy); //handle.. is 4
     }
 
-    sf::Vector2f fixedPositiondrie = textureManager.spriteshooterdrie.getPosition();
-    textureManager.spriteshooterdrie.setPosition(fixedPositiondrie);
+    void Game::updatehealthBar() {
 
-    sf::Vector2f fixedPositioneen = textureManager.spriteshootereen.getPosition();
-    textureManager.spriteshootereen.setPosition(fixedPositioneen);
+        healthBar_een.updatePosition(sf::Vector2f(snel->spriteEnemyOne.getPosition()));
+        redhealthBar_een_copy.updatePosition(sf::Vector2f(snel->spriteEnemyOne.getPosition()));
 
-    sf::Vector2f fixedPositionvier = textureManager.spriteshootervier.getPosition();
-    textureManager.spriteshootervier.setPosition(fixedPositionvier);
-}
+        healthBar_twee.updatePosition(sf::Vector2f(traag->spriteEnemyOne.getPosition()));
+        redhealthBar_twee_copy.updatePosition(sf::Vector2f(traag->spriteEnemyOne.getPosition()));
 
-void Game::useWeapon(Weapon& weapon, sf::Vector2f shooterPosition) {
-    weapon.fire(shooterPosition);
-}
-
-void Game::run(sf::RenderWindow& window) {
-    window.setFramerateLimit(60);
-
-    bool isRKeyPressed = false;
-    bool isPKeyPressed = false;
-    bool isCKeyPressed = false;
-
-    redhealthBar_een.bar.setFillColor(sf::Color::Green);
-    redhealthBar_twee.bar.setFillColor(sf::Color::Green);
-    redhealthBar_drie.bar.setFillColor(sf::Color::Green);
-    redhealthBar_vier.bar.setFillColor(sf::Color::Green);
+        if (redhealthBar_een_copy.currentHealth <= 49 ) {
+            // Plaats snel terug op de oorspronkelijke positie
+            snel->resetPosition();
+            //redhealthBar_een_copy.currentHealth = 50; //terug opnieuw spam zo blijft spel altijd doorgaan
+        }
+        
+    }
 
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
+    void Game::run(sf::RenderWindow& window) {
+
+        window.setFramerateLimit(60);
+        sf::Vector2f shooterPosition;
+        sf::Vector2f shooterPositiontwee;
+        sf::Vector2f shooterPositiondrie;
+        sf::Vector2f shooterPositionvier;
+        sf::Vector2f shooterPositionvijf;
+        sf::Vector2f shooterPositionzes;
+
+        sf::Vector2f shooterPositionL;
+        sf::Vector2f shooterPositiontweeL;
+        sf::Vector2f shooterPositiondrieL;
+        sf::Vector2f shooterPositionvierL;
+        sf::Vector2f shooterPositionvijfL;
+        sf::Vector2f shooterPositionzesL;
+
+        shooterPosition = sf::Vector2f(328, 294);
+        shooterPositiontwee = sf::Vector2f(85, 330);
+        shooterPositiondrie = sf::Vector2f(85, 518);
+        shooterPositionvier = sf::Vector2f(344, 482);
+        shooterPositionvijf = sf::Vector2f(605, 395);
+        shooterPositionzes = sf::Vector2f(901, 458);
+
+        string CanonMoney = "4";
+        string LaserMoney = "7";
+
+        redhealthBar_een_copy.bar.setFillColor(sf::Color::Green);
+        redhealthBar_twee_copy.bar.setFillColor(sf::Color::Green);
+
+
+        //Window
+        while (window.isOpen())
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                window.close();
+            sf::Event event;
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
             {
                 isPKeyPressed = true;
-                isRKeyPressed = false;
-                isCKeyPressed = false;
                 spriteVisibleP = true;
-                spriteVisibleC = false;
             }
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
             {
-                isRKeyPressed = true;
-                isPKeyPressed = false;
-                isCKeyPressed = false;
-                spriteVisibleP = false;
-                spriteVisibleC = false;
+                isGKeyPressed = true;
+                spriteVisibleG = true;
             }
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+            {
+                isGKeyPressed = false;
+                spriteVisibleG = false;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+            {
+                isEKeyPressed = false;
+                spriteVisibleE = false;
+            }
+
+           
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+            //Knop E
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+            {
+                isEKeyPressed = true;
+                spriteVisibleE = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isEKeyPressed && PlaceEIsEmty)
+            {
+                isLkeyPressed = true;
+                spriteVisibleL = true;
+                ELshootPosition = true;
+                PlaceEIsEmty = false;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isEKeyPressed && !PlaceEIsEmty)
+            {
+                string strL = "Can not place something here you have to sell it"; 
+                std::cout << "" <<strL<<endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isEKeyPressed && PlaceEIsEmty) //&&geld genoeg hebben
             {
                 isCKeyPressed = true;
-                isRKeyPressed = false;
-                isPKeyPressed = false;
-                spriteVisibleP = false;
                 spriteVisibleC = true;
+                EshootPosition = true;
+                PlaceEIsEmty = false;
+                goldInt.subtractMoney(2); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isEKeyPressed && !PlaceEIsEmty && spriteVisibleC) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << CanonMoney << " Dollar worth" << endl; //String class
+                std::cout <<"" << goldDouble.getCurrentGold()<< " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+                cout << endl;
+                //goldDouble.addMoney(0.1); //call-by-reference
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isEKeyPressed && !PlaceEIsEmty && spriteVisibleL) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << LaserMoney << "Worth" << endl; //String class
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isEKeyPressed && !PlaceEIsEmty)
+            {
+                string strC = "Can not place something here you have to sell it";
+                std::cout << "" <<strC<< endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isEKeyPressed && !PlaceEIsEmty && spriteVisibleC) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleC = false;
+                EshootPosition = false;
+                spriteVisibleL = false;
+                PlaceEIsEmty = true; //extra geld geven 
+                goldInt.addMoney(4); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isEKeyPressed && !PlaceEIsEmty && spriteVisibleL) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleC = false;
+                spriteVisibleL = false;
+                PlaceEIsEmty = true; //extra geld geven 
+                ELshootPosition = false;
+                goldInt.addMoney(4); //call-by-reference
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isEKeyPressed && PlaceEIsEmty)
+            {
+                string strS = "You have nothing to sell!";
+                std::cout << "" << strS << endl; //String class
+            }
+ //---------------------------------------------------------------------------------------------------------------------------------------------------
+            //knop T
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+            {
+                isTKeyPressed = true;
+                spriteVisibleT = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isTKeyPressed && PlaceTIsEmty)
+            {
+                isLkeyPressed = true;
+                spriteVisibleLtwee = true;
+                TLshootPosition = true;
+                PlaceTIsEmty = false;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isTKeyPressed && !PlaceTIsEmty)
+            {
+                string strL = "Can not place something here you have to sell it";
+                std::cout << "" << strL << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isTKeyPressed && PlaceTIsEmty) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCtwee = true;
+                TshootPosition = true;
+                PlaceTIsEmty = false;
+                goldInt.subtractMoney(2); //call-by-refp erence
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isTKeyPressed && !PlaceTIsEmty && spriteVisibleCtwee) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << CanonMoney << " Dollar worth" << endl; //String class
+                std::cout << "" << goldDouble.getCurrentGold() << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+                cout << endl;
+                //goldDouble.addMoney(0.1); //call-by-reference
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isTKeyPressed && !PlaceTIsEmty && spriteVisibleLtwee) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << LaserMoney << "Worth" << endl; //String class
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isTKeyPressed && !PlaceTIsEmty)
+            {
+                string strC = "Can not place something here you have to sell it";
+                std::cout << "" << strC << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isTKeyPressed && !PlaceTIsEmty && spriteVisibleCtwee) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCtwee = false;
+                TshootPosition = false;
+                spriteVisibleLtwee = false;
+                PlaceTIsEmty = true; //extra geld geven 
+
+                goldInt.addMoney(4); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isTKeyPressed && !PlaceTIsEmty && spriteVisibleLtwee) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCtwee = false;
+                TLshootPosition = false;
+                spriteVisibleLtwee = false;
+                PlaceTIsEmty = true; //extra geld geven 
+                goldInt.addMoney(4); //call-by-reference //hier is iets mis mee deze verkoopt niet
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isTKeyPressed && PlaceTIsEmty)
+            {
+                string strS = "You have nothing to sell!";
+                std::cout << "" << strS << endl; //String class
+            }
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+            //Knop V
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::V))
+            {
+                isVKeyPressed = true;
+                spriteVisibleV = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isVKeyPressed && PlaceVIsEmty)
+            {
+                isLkeyPressed = true;
+                spriteVisibleLdrie = true;
+                VLshootPosition = true;
+                PlaceVIsEmty = false;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isVKeyPressed && !PlaceVIsEmty)
+            {
+                string strL = "Can not place something here you have to sell it";
+                std::cout << "" << strL << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isVKeyPressed && PlaceVIsEmty) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCdrie = true;
+                VshootPosition = true;
+                PlaceVIsEmty = false;
+                goldInt.subtractMoney(2); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isVKeyPressed && !PlaceVIsEmty && spriteVisibleCdrie) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << CanonMoney << " Dollar worth" << endl; //String class
+                std::cout << "" << goldDouble.getCurrentGold() << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+                cout << endl;
+                //goldDouble.addMoney(0.1); //call-by-reference
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isVKeyPressed && !PlaceVIsEmty && spriteVisibleLdrie) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << LaserMoney << "Worth" << endl; //String class
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isVKeyPressed && !PlaceVIsEmty)
+            {
+                string strC = "Can not place something here you have to sell it";
+                std::cout << "" << strC << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isVKeyPressed && !PlaceVIsEmty && spriteVisibleCdrie) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCdrie = false;
+                VshootPosition = false;
+                spriteVisibleLdrie = false;
+                PlaceVIsEmty = true; //extra geld geven 
+                goldInt.addMoney(4); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isVKeyPressed && !PlaceVIsEmty && spriteVisibleLdrie) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCdrie = false;
+                spriteVisibleLdrie = false;
+                PlaceVIsEmty = true; //extra geld geven 
+                VLshootPosition = false;
+                goldInt.addMoney(4); //call-by-reference
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isEKeyPressed && PlaceEIsEmty)
+            {
+                string strS = "You have nothing to sell!";
+                std::cout << "" << strS << endl; //String class
+            }
+ //---------------------------------------------------------------------------------------------------------------------------------------------------
+            //Knop D
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            {
+                isDKeyPressed = true;
+                spriteVisibleD = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isDKeyPressed && PlaceDIsEmty)
+            {
+                isLkeyPressed = true;
+                spriteVisibleLvier = true;
+                DLshootPosition = true;
+                PlaceDIsEmty = false;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isDKeyPressed && !PlaceDIsEmty)
+            {
+                string strL = "Can not place something here you have to sell it";
+                std::cout << "" << strL << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isDKeyPressed && PlaceDIsEmty) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCvier = true;
+                DshootPosition = true;
+                PlaceDIsEmty = false;
+                goldInt.subtractMoney(2); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isDKeyPressed && !PlaceDIsEmty && spriteVisibleCvier) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << CanonMoney << " Dollar worth" << endl; //String class
+                std::cout << "" << goldDouble.getCurrentGold() << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+                cout << endl;
+                //goldDouble.addMoney(0.1); //call-by-reference
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isDKeyPressed && !PlaceDIsEmty && spriteVisibleLvier) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << LaserMoney << "Worth" << endl; //String class
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isDKeyPressed && !PlaceDIsEmty)
+            {
+                string strC = "Can not place something here you have to sell it";
+                std::cout << "" << strC << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isDKeyPressed && !PlaceDIsEmty && spriteVisibleCvier) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCvier = false;
+                DshootPosition = false;
+                spriteVisibleLvier = false;
+                PlaceDIsEmty = true; //extra geld geven 
+                goldInt.addMoney(4); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isDKeyPressed && !PlaceDIsEmty && spriteVisibleLvier) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCvier = false;
+                spriteVisibleLvier = false;
+                PlaceDIsEmty = true; //extra geld geven 
+                DLshootPosition = false;
+                goldInt.addMoney(4); //call-by-reference
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isDKeyPressed && PlaceDIsEmty)
+            {
+                string strS = "You have nothing to sell!";
+                std::cout << "" << strS << endl; //String class
+            }
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+             //Knop W
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+            {
+                isWKeyPressed = true;
+                spriteVisibleW = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isWKeyPressed && PlaceWIsEmty)
+            {
+                isLkeyPressed = true;
+                spriteVisibleLvijf = true;
+                WLshootPosition = true;
+                PlaceWIsEmty = false;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isWKeyPressed && !PlaceWIsEmty)
+            {
+                string strL = "Can not place something here you have to sell it";
+                std::cout << "" << strL << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isWKeyPressed && PlaceWIsEmty) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCvijf = true;
+                WshootPosition = true;
+                PlaceWIsEmty = false;
+                goldInt.subtractMoney(2); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isWKeyPressed && !PlaceWIsEmty && spriteVisibleCvijf) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << CanonMoney << " Dollar worth" << endl; //String class
+                std::cout << "" << goldDouble.getCurrentGold() << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+                cout << endl;
+                //goldDouble.addMoney(0.1); //call-by-reference
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isWKeyPressed && !PlaceWIsEmty && spriteVisibleLvijf) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << LaserMoney << "Worth" << endl; //String class
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isWKeyPressed && !PlaceWIsEmty)
+            {
+                string strC = "Can not place something here you have to sell it";
+                std::cout << "" << strC << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isWKeyPressed && !PlaceWIsEmty && spriteVisibleCvijf) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCvijf = false;
+                WshootPosition = false;
+                spriteVisibleLvijf = false;
+                PlaceWIsEmty = true; //extra geld geven 
+                goldInt.addMoney(4); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isWKeyPressed && !PlaceWIsEmty && spriteVisibleLvijf) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCvijf = false;
+                spriteVisibleLvijf = false;
+                PlaceWIsEmty = true; //extra geld geven 
+                WLshootPosition = false;
+                goldInt.addMoney(4); //call-by-reference
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isWKeyPressed && PlaceWIsEmty)
+            {
+                string strS = "You have nothing to sell!";
+                std::cout << "" << strS << endl; //String class
+            }
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+            //Knop Z
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+            {
+                isZKeyPressed = true;
+                spriteVisibleZ = true;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isZKeyPressed && PlaceZIsEmty)
+            {
+                isLkeyPressed = true;
+                spriteVisibleLzes = true;
+                ZLshootPosition = true;
+                PlaceZIsEmty = false;
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L) && isZKeyPressed && !PlaceZIsEmty)
+            {
+                string strL = "Can not place something here you have to sell it";
+                std::cout << "" << strL << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isZKeyPressed && PlaceZIsEmty) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCzes = true;
+                ZshootPosition = true;
+                PlaceZIsEmty = false;
+                goldInt.subtractMoney(2); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isZKeyPressed && !PlaceZIsEmty && spriteVisibleCzes) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << CanonMoney << " Dollar worth" << endl; //String class
+                std::cout << "" << goldDouble.getCurrentGold() << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+                cout << endl;
+                //goldDouble.addMoney(0.1); //call-by-reference
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && isZKeyPressed && !PlaceZIsEmty && spriteVisibleLzes) //&&geld genoeg hebben
+            {
+                std::cout << "The Cannon is " << LaserMoney << "Worth" << endl; //String class
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && isZKeyPressed && !PlaceZIsEmty)
+            {
+                string strC = "Can not place something here you have to sell it";
+                std::cout << "" << strC << endl; //String class
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isZKeyPressed && !PlaceZIsEmty && spriteVisibleCzes) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCzes = false;
+                ZshootPosition = false;
+                spriteVisibleLzes = false;
+                PlaceZIsEmty = true; //extra geld geven 
+                goldInt.addMoney(4); //call-by-reference
+                std::cout << " Current_Gold: " << goldInt.getCurrentGold() << std::endl;
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isZKeyPressed && !PlaceZIsEmty && spriteVisibleLzes) //&&geld genoeg hebben
+            {
+                isCKeyPressed = true;
+                spriteVisibleCzes = false;
+                spriteVisibleLzes = false;
+                PlaceZIsEmty = true; //extra geld geven 
+                ZLshootPosition = false;
+                goldInt.addMoney(4); //call-by-reference
+            }
+
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && isZKeyPressed && PlaceZIsEmty)
+            {
+                string strS = "You have nothing to sell!";
+                std::cout << "" << strS << endl; //String class
+            }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------           
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+            {
+                isEKeyPressed = false;
+                spriteVisibleE = false;
             }
             else
             {
-                isRKeyPressed = false;
-                isPKeyPressed = false;
                 isCKeyPressed = false;
-            }
-        }
+                isKKeyPressed = false;
+                isPKeyPressed = false;
+                isGKeyPressed = false;
+                isEKeyPressed = false;
+                isLkeyPressed = false; //hoofdletter
+                isQKeyPressed = false;
+                isSKeyPressed = false;
+                isTKeyPressed = false;
+                isDKeyPressed = false;
+                isVKeyPressed = false;
+                isWKeyPressed = false;
+                isZKeyPressed = false;
+            }         
 
-        // Render
-        window.clear();
+            //Window leeg maken
 
-        window.draw(textureManager.spriteAchtergrond);
-        window.draw(textureManager.spritetowerdefensetext);
-        window.draw(textureManager.spritetitle);
-        window.draw(textureManager.spriteplay);
-        window.draw(textureManager.spriteoption);
+            window.clear();
 
-        if (spriteVisibleP)
-        {
+            //Titlescherm
 
-            window.draw(*(textureManager.sprite));
-            window.draw(textureManager.spritecastle);
-
-
-            /* window.draw(textureManager.spritepaper);
-             window.draw(textureManager.spritevbCannon);
-             window.draw(textureManager.spritevbCannon2);
-             window.draw(textureManager.spritevbCannon3);
-
-             window.draw(textureManager.spritevbMG);
-             window.draw(textureManager.spritevbMG2);
-             window.draw(textureManager.spritevbMG3);
-
-             window.draw(textureManager.spritevbMissile_Launcher);
-             window.draw(textureManager.spritevbMissile_Launcher2);
-             window.draw(textureManager.spritevbMissile_Launcher3);*/
-
-             //if (spriteVisibleC)
-             //{
-            window.draw(textureManager.spritemudeen);
-            window.draw(textureManager.spritemudtwee);
-            window.draw(textureManager.spritemuddrie);
-            window.draw(textureManager.spritemudvier);
-            window.draw(textureManager.spritemudvijf);
+            window.draw(*(textureManager.spriteAchtergrond));
+            window.draw(*(textureManager.spritepaper));
+            window.draw(*(textureManager.spritetowerdefensetext));
+            window.draw(*(textureManager.spriteplay));
+            window.draw(*(textureManager.spriteoption));
 
 
-            window.draw(textureManager.spriteshootereen);
-            window.draw(textureManager.spriteshootertwee);
-            window.draw(textureManager.spriteshooterdrie);
-            window.draw(textureManager.spriteshootervier);
-
-
-            window.draw(snel.spriterobottwee);
-            window.draw(traag.spriterobottwee);
-            window.draw(snelxtraagy.spriterobottwee);
-            window.draw(traagxsnely.spriterobottwee);
-
-            window.draw(textureManager.spritemudeen);
-            window.draw(textureManager.spritemudtwee);
-            window.draw(textureManager.spritemuddrie);
-            window.draw(textureManager.spritemudvier);
-            window.draw(textureManager.spritemudvijf);
-            window.draw(textureManager.spritemudzes);
-
-            window.draw(textureManager.spriteshootereen);
-            window.draw(textureManager.spriteshootertwee);
-            window.draw(textureManager.spriteshooterdrie);
-            window.draw(textureManager.spriteshootervier);
-
-            window.draw(snel.spriterobottwee);
-            window.draw(traag.spriterobottwee);
-            window.draw(snelxtraagy.spriterobottwee);
-            window.draw(traagxsnely.spriterobottwee);
-
-            updateShooterRotation();
-
-
-            snel.update();
-            traag.update();
-            snelxtraagy.update();
-            traagxsnely.update();
-
-            useWeapon(laser, textureManager.spriteshooterdrie.getPosition());
-
-            if (spriteVisiblelaser)
-                window.draw(laser.spritelaser);
-
-            useWeapon(mg, textureManager.spriteshootervier.getPosition());
-
-            if (spriteVisiblemg)
-                window.draw(mg.spriteMG);
-
-            useWeapon(canon, textureManager.spriteshootereen.getPosition());
-
-            if (spriteVisiblecanon)
-                window.draw(canon.arrow);
-
-
-            healthBar_een.updatePosition(sf::Vector2f(snel.spriterobottwee.getPosition()));
-            healthBar_twee.updatePosition(sf::Vector2f(traag.spriterobottwee.getPosition()));
-            healthBar_drie.updatePosition(sf::Vector2f(snelxtraagy.spriterobottwee.getPosition()));
-            healthBar_vier.updatePosition(sf::Vector2f(traagxsnely.spriterobottwee.getPosition()));
-
-            redhealthBar_een.updatePosition(sf::Vector2f(snel.spriterobottwee.getPosition()));
-            redhealthBar_twee.updatePosition(sf::Vector2f(traag.spriterobottwee.getPosition()));
-            redhealthBar_drie.updatePosition(sf::Vector2f(snelxtraagy.spriterobottwee.getPosition()));
-            redhealthBar_vier.updatePosition(sf::Vector2f(traagxsnely.spriterobottwee.getPosition()));
-
-            if (canon.arrow.getGlobalBounds().intersects(traag.spriterobottwee.getGlobalBounds()))
+            if (spriteVisibleP)
             {
-                redhealthBar_twee.applyDamage();
+                window.draw(*(textureManager.spritepad));
+                window.draw(*(textureManager.spritecastle));
+                window.draw(*(textureManager.spritetowereen));
+                window.draw(*(textureManager.spritetowertwee));
+                window.draw(*(textureManager.spritetowerdrie));
+                window.draw(*(textureManager.spritetowervier));
+                window.draw(*(textureManager.spritetowervijf));
+                window.draw(*(textureManager.spritetowerzes));
+                window.draw(*(textureManager.spriteinsideMoneyrec));
+                window.draw(*(textureManager.spriteMoneyrec));
+                window.draw(*(textureManager.spriteE));
+                window.draw(*(textureManager.spriteT));
+                window.draw(*(textureManager.spriteD));
+                window.draw(*(textureManager.spriteV));
+                window.draw(*(textureManager.spriteW));
+                window.draw(*(textureManager.spriteZ));
+                window.draw(*(textureManager.spriteGoldname));
+
+                    //std::cout << " "<<snel->spriteEnemyOne.getPosition().x << endl;
+          
+                        if (redhealthBar_een_copy.currentHealth > 45)
+                        {
+                            window.draw(snel->spriteEnemyOne);
+                            window.draw(healthBar_een.bar);
+                            window.draw(redhealthBar_een_copy.bar);
+                        }
+
+
+                        if (WaveOneCompleet/* redhealthBar_twee_copy.currentHealth > 25*/)
+                        {
+                            std::cout << "Enemy traag wordt toegevoegd" << endl;
+                            window.draw(traag->spriteEnemyOne);
+                            window.draw(healthBar_twee.bar);
+                            window.draw(redhealthBar_twee_copy.bar);
+                        }
+
+                        //std::cout << "The health is " << redhealthBar_een_copy.getCurrentHealth() << endl; //String class
+
+                        if (spriteVisibleE)
+                        {
+                            window.draw(*(textureManager.spriteRolwapens));
+                            //hier moeten de wapens gekozen worden
+                        }
+                        if (spriteVisibleC || spriteVisibleCtwee || spriteVisibleCdrie || spriteVisibleCvier || spriteVisibleCvijf || spriteVisibleCzes)
+                        {
+                            if (EshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, canonplaats->spritecanonleveleen, shooterPosition, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*canonplaats, textureManager.spritecanonleveleen.getPosition());
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogel->spriteCanonKogeltwee);
+                                useWeapon(*canonkogel, shooterPosition);
+                                //canonkogel->update(); //niet nuttig denk ik
+                                canonkogel->update(snel->spriteEnemyOne.getPosition(),shooterPosition);
+                                canonplaats->fire(shooterPosition);
+                                
+                            }
+                            if (TshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, canonplaatstwee->spritecanonleveleen, shooterPositiontwee, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*canonkogeltwee, shooterPositiontwee);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogeltwee->spriteCanonKogeltwee);
+                                //canonkogeltwee->update(); //niet nuttig denk ik
+                                canonkogeltwee->update(snel->spriteEnemyOne.getPosition(),shooterPosition);
+                                canonkogeltwee->fire(snel->spriteEnemyOne.getPosition());
+                                                            
+                            }
+                            if (VshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, canonplaatsdrie->spritecanonleveleen, shooterPositiondrie, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*canonkogeldrie, shooterPositiondrie);
+                                //drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogeldrie->spriteCanonKogeltwee);
+                                //canonkogeldrie->update(); //niet nuttig denk ik
+                                canonkogeldrie->update(snel->spriteEnemyOne.getPosition(), shooterPositiondrie);
+                                canonkogeldrie->fire(snel->spriteEnemyOne.getPosition());
+                            }
+                            if (DshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, canonplaatsvier->spritecanonleveleen, shooterPositionvier, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*canonkogelvier, shooterPositionvier);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogelvier->spriteCanonKogeltwee);
+                                //canonkogelvier->update(); //niet nuttig denk ik
+                                canonkogelvier->update(snel->spriteEnemyOne.getPosition(), shooterPositionvier);
+                                canonkogelvier->fire(snel->spriteEnemyOne.getPosition());
+                            }
+                            if (WshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, canonplaatsvijf->spritecanonleveleen, shooterPositionvijf, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*canonkogelvijf, shooterPositionvijf);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogelvijf->spriteCanonKogeltwee);
+                                //canonkogelvijf->update(); //niet nuttig denk ik
+                                canonkogelvijf->update(snel->spriteEnemyOne.getPosition(), shooterPositionvijf);
+                                canonkogelvijf->fire(snel->spriteEnemyOne.getPosition());
+                            }
+                            if (ZshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, canonplaatszes->spritecanonleveleen, shooterPositionzes, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*canonkogelzes, shooterPositionzes);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogelzes->spriteCanonKogeltwee);
+                                //canonkogelzes->update(); //niet nuttig denk ik
+                                canonkogelzes->update(snel->spriteEnemyOne.getPosition(), shooterPositionzes);
+                                canonkogelzes->fire(snel->spriteEnemyOne.getPosition());
+                            }
+                        }
+                        if (spriteVisibleL || spriteVisibleLtwee || spriteVisibleLdrie || spriteVisibleLvier || spriteVisibleLvijf || spriteVisibleLzes)
+                        {
+                            if (ELshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, laserplaats->spritelaserleveleen, shooterPosition, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*laserkogel, shooterPosition);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, laserkogel->spriteLaserKogeltwee);
+                                laserkogel->update(); //niet nuttig denk ik
+                            }
+                            if (TLshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, laserplaats->spritelaserleveleen, shooterPositiontwee, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*laserkogeltwee, shooterPositiontwee);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, laserkogeltwee->spriteLaserKogeltwee);
+                                laserkogeltwee->update(); //niet nuttig denk ik
+                            }
+                            if (VLshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, laserplaats->spritelaserleveleen, shooterPositiondrie, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*laserkogeldrie, shooterPositiondrie);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, laserkogeldrie->spriteLaserKogeltwee);
+                                laserkogeldrie->update(); //niet nuttig denk ik denk ik
+                            }
+                            if (DLshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, laserplaats->spritelaserleveleen, shooterPositionvier, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*laserkogelvier, shooterPositionvier);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, laserkogelvier->spriteLaserKogeltwee);
+                                laserkogelvier->update(); //niet nuttig denk ik denk ik
+                            }
+                            if (WLshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, laserplaats->spritelaserleveleen, shooterPositionvijf, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*laserkogelvijf, shooterPositionvijf);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, laserkogelvijf->spriteLaserKogeltwee);
+                                laserkogelvijf->update(); //niet nuttig denk ik denk ik
+                            }
+                            if (ZLshootPosition)
+                            {
+                                drawSpriteIfVisible::drawSpriteVisible(window, laserplaats->spritelaserleveleen, shooterPositionzes, sf::Vector2f(canonplaats->spritecanonleveleen.getLocalBounds().width / 2, canonplaats->spritecanonleveleen.getLocalBounds().height / 2));
+                                useWeapon(*laserkogelzes, shooterPositionzes);
+                                drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, laserkogelzes->spriteLaserKogeltwee);
+                                laserkogelzes->update(); //niet nuttig denk ik denk ik
+                            }
+                        }
+
+                        updaterotation.updateShooterRotation(canonplaats, snel, 0);
+                        updaterotation.updateShooterRotation(canonplaatstwee, snel, 0);
+                        updaterotation.updateShooterRotation(canonplaatsdrie, snel, 0);
+                        updaterotation.updateShooterRotation(canonplaatsvier, snel, 0);
+                        updaterotation.updateShooterRotation(canonplaatsvijf, snel, 0);
+                        updaterotation.updateShooterRotation(canonplaatszes, snel, 0);
+
+                        if (spriteVisibleG)
+                        {
+                            updateEnemies();
+                        }
+                        // updateEnemiestwee();
+
+                        updateHandleIntersectionAndDamage();
+
+                        updatehealthBar();                
             }
-
-            window.draw(healthBar_een.bar);
-            window.draw(healthBar_twee.bar);
-            window.draw(healthBar_drie.bar);
-            window.draw(healthBar_vier.bar);
-
-            window.draw(redhealthBar_een.bar);
-            window.draw(redhealthBar_twee.bar);
-            window.draw(redhealthBar_drie.bar);
-            window.draw(redhealthBar_vier.bar);
-
-
-            //}
+                window.display();  
         }
-        window.display();
     }
 }
+
+//wat is een inline?
+//mss hartjes maken in plaats van balk of toch sommige enemys
+//mss useWeapon kunne toepassen hier ik snap niet goed wat dit doen
+//plaatsdrie < Weapons < Canon, Laser, MG class colision ofzo
+//moet geld genoeg hebben voor wapen te kunne kopen
+//verschillende Waves
+
+/*
+if (sellPriceCanon)
+{
+std::cout << "The Cannon is " << CanonMoney << "Worth" << endl;
+}
+
+std::cout << "The health is " << redhealthBar_een_copy.getCurrentHealth() << endl; //String class
+std::cout << "The health is " << redhealthBar_twee_copy.getCurrentHealth() << endl; //String class
+
+Volgende Stap:
+
+- laser zelfde doen als canon
+- rotation weapon zie vorige code
+- rotation fire
+- inline float -> int //goldDouble.addMoney(0.1);
+
+*/

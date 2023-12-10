@@ -1,15 +1,35 @@
-#pragma once
+#ifndef GOLD_H
+#define GOLD_H
 
-#include "TextureManager.h"
+#include <SFML/Graphics.hpp>
+namespace Towerdefense
+{
 
-class Gold {
-private:
-    TextureManager textureManager;
+    template <typename T>
 
-public:
-    int maxGold;
-    int currentGold;
+    class Gold
+    {
+    public:
+        T currentGold = 10;
 
-    Gold(sf::Vector2f GoldPosition, int maxGold);
-};
+        Gold(T maxGold);
+
+        void addMoney(T amount);
+        void subtractMoney(T amount);
+
+        inline T add(T a, T b);
+        inline T subtract(T a, T b);
+
+        T getCurrentGold() const;
+
+    private:
+        
+        void setCurrentGold(T gold);
+        
+        friend class EnemyOne; //friend class
+        friend class Wave; //friend class
+        friend class Gold;
+    };
+}
+#endif
 

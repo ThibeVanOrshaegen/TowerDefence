@@ -1,228 +1,335 @@
 #include "TextureManager.h"
+#include <memory>
 
 #define M_PI 3.14159265358979323846
 
-TextureManager::TextureManager()
+namespace Towerdefense
 {
-    texture = new sf::Texture();
-    sprite = new sf::Sprite();
+    TextureManager::TextureManager()
+    {
+        //OpeningScreen
+        textureAchtergrond = new sf::Texture();
+        spriteAchtergrond = new sf::Sprite();
 
-    //OpeningScreen
+        textureAchtergrond->loadFromFile("./cooltitlescreen.jpg");
+        spriteAchtergrond->setTexture(*textureAchtergrond);
+        sf::Vector2f AchtergrondPosition(0, 0);
+        spriteAchtergrond->setPosition(AchtergrondPosition);
+        spriteAchtergrond->setScale(1.0f, 1.0f);
 
-    textureAchtergrond.loadFromFile("./cooltitlescreen.jpg");
-    spriteAchtergrond.setTexture(textureAchtergrond);
-    sf::Vector2f AchtergrondPosition(0, 0);
-    spriteAchtergrond.setPosition(AchtergrondPosition);
-    spriteAchtergrond.setScale(1.0f, 1.0f);
+        //Title
+        texturepaper = new sf::Texture();
+        spritepaper = new sf::Sprite();
 
-    //Title
+        texturepaper->loadFromFile("./paperrolverticaal.png");
+        spritepaper->setTexture(*texturepaper);
+        sf::Vector2f TitlePosition(10, 200);
+        spritepaper->setPosition(TitlePosition);
+        spritepaper->setScale(0.7f, 0.44f);
 
-    texturetitle.loadFromFile("./paperrolverticaal.png");
-    spritetitle.setTexture(texturetitle);
-    sf::Vector2f TitlePosition(10, 200);
-    spritetitle.setPosition(TitlePosition);
-    spritetitle.setScale(0.7f, 0.44f);
+        //Playbutton
+        textureplay = new sf::Texture();
+        spriteplay = new sf::Sprite();
 
-    //Playbutton
+        textureplay->loadFromFile("./newplay.png");
+        spriteplay->setTexture(*textureplay);
+        sf::Vector2f PlaybuttonPosition(150, 290);
+        spriteplay->setPosition(PlaybuttonPosition);
+        spriteplay->setScale(0.3f, 0.3f);
 
-    textureplay.loadFromFile("./newplay.png");
-    spriteplay.setTexture(textureplay);
-    sf::Vector2f PlaybuttonPosition(150, 290);
-    spriteplay.setPosition(PlaybuttonPosition);
-    spriteplay.setScale(0.3f, 0.3f);
+        //Optionbutton
+        textureoption = new sf::Texture();
+        spriteoption = new sf::Sprite();
 
-    //Optionbutton
+        textureoption->loadFromFile("./Newoptions.png");
+        spriteoption->setTexture(*textureoption);
+        sf::Vector2f optionPosition(140, 350);
+        spriteoption->setPosition(optionPosition);
+        spriteoption->setScale(0.25f, 0.25f);
 
-    textureoption.loadFromFile("./Newoptions.png");
-    spriteoption.setTexture(textureoption);
-    sf::Vector2f optionPosition(140, 350);
-    spriteoption.setPosition(optionPosition);
-    spriteoption.setScale(0.25f, 0.25f);
+        //Towerdefense Text
+        texturetowerdefensetext = new sf::Texture();
+        spritetowerdefensetext = new sf::Sprite();
 
-    //Towerdefense Text
+        texturetowerdefensetext->loadFromFile("./towertextonder.png");
+        spritetowerdefensetext->setTexture(*texturetowerdefensetext);
+        sf::Vector2f towerdefensetextPosition(0, 20);
+        spritetowerdefensetext->setPosition(towerdefensetextPosition);
+        spritetowerdefensetext->setScale(0.7f, 0.5f);
 
-    texturetowerdefensetext.loadFromFile("./towertextonder.png");
-    spritetowerdefensetext.setTexture(texturetowerdefensetext);
-    sf::Vector2f towerdefensetextPosition(0, 20);
-    spritetowerdefensetext.setPosition(towerdefensetextPosition);
-    spritetowerdefensetext.setScale(0.7f, 0.5f);
+        //Pad
+        texturepad = new sf::Texture();
+        spritepad = new sf::Sprite();
+
+        texturepad->loadFromFile("./plattegrond.png");
+        spritepad->setTexture(*texturepad);
+
+        //Kasteel
+        texturecastle = new sf::Texture();
+        spritecastle = new sf::Sprite();
+
+        texturecastle->loadFromFile("./Castletwee.png");
+        spritecastle->setTexture(*texturecastle);
+        sf::Vector2f castlePosition(1050, 80);
+        spritecastle->setPosition(castlePosition);
+        spritecastle->setRotation(30);
+        spritecastle->setScale(1.8f, 1.8f);
+
+        //Tower_een
+        texturetowereen = new sf::Texture();
+        spritetowereen = new sf::Sprite();
+
+        texturetowereen->loadFromFile("./Tower.png");
+        spritetowereen->setTexture(*texturetowereen); //anders laat die moddervlek niet zien
+        sf::Vector2f towereenPosition(275, 260);
+        spritetowereen->setPosition(towereenPosition);
+        spritetowereen->setScale(0.44f, 0.44f);
+
+        //Tower_twee
+        texturetowertwee = new sf::Texture();
+        spritetowertwee = new sf::Sprite();
+
+        texturetowertwee->loadFromFile("./Tower.png");
+        spritetowertwee->setTexture(*texturetowertwee); //anders laat die moddervlek niet zien
+        sf::Vector2f towertweePosition(275, 430);
+        spritetowertwee->setPosition(towertweePosition);
+        spritetowertwee->setScale(0.44f, 0.44f);
+
+        //Tower_drie
+        texturetowerdrie = new sf::Texture();
+        spritetowerdrie = new sf::Sprite();
+
+        texturetowerdrie->loadFromFile("./Tower.png");
+        spritetowerdrie->setTexture(*texturetowerdrie); //anders laat die moddervlek niet zien
+        sf::Vector2f towerdriePosition(37, 270);
+        spritetowerdrie->setPosition(towerdriePosition);
+        spritetowerdrie->setScale(0.4f, 0.4f);
+
+        //Tower_vier
+        texturetowervier = new sf::Texture();
+        spritetowervier = new sf::Sprite();
+
+        texturetowervier->loadFromFile("./Tower.png");
+        spritetowervier->setTexture(*texturetowervier); //anders laat die moddervlek niet zien
+        sf::Vector2f towervierPosition(37, 490);
+        spritetowervier->setPosition(towervierPosition);
+        spritetowervier->setScale(0.4f, 0.4f);
+
+        //Tower_vijf
+        texturetowervijf = new sf::Texture();
+        spritetowervijf = new sf::Sprite();
+
+        texturetowervijf->loadFromFile("./Tower.png");
+        spritetowervijf->setTexture(*texturetowervijf); //anders laat die moddervlek niet zien
+        sf::Vector2f towervijfPosition(547, 320);
+        spritetowervijf->setPosition(towervijfPosition);
+        spritetowervijf->setScale(0.5, 0.5f);
+
+        //Tower_zes
+        texturetowerzes = new sf::Texture();
+        spritetowerzes = new sf::Sprite();
+
+        texturetowerzes->loadFromFile("./Tower.png");
+        spritetowerzes->setTexture(*texturetowerzes); //anders laat die moddervlek niet zien
+        sf::Vector2f towerzesPosition(850, 430);
+        spritetowerzes->setPosition(towerzesPosition);
+        spritetowerzes->setScale(0.43f, 0.43f);
+
+        //Money Rectangle
+        textureMoneyrec = new sf::Texture();
+        spriteMoneyrec = new sf::Sprite();
+
+        textureMoneyrec->loadFromFile("./Money_rec.png");
+        spriteMoneyrec->setTexture(*textureMoneyrec); //anders laat die moddervlek niet zien
+        sf::Vector2f MoneyrecPosition(0,20);
+        spriteMoneyrec->setPosition(MoneyrecPosition);
+        spriteMoneyrec->setScale(0.13f, 0.13f);
+
+        //Inside Money Rectangle
+        textureinsideMoneyrec = new sf::Texture();
+        spriteinsideMoneyrec = new sf::Sprite();
+
+        textureinsideMoneyrec->loadFromFile("./Donkerbruin.jpg");
+        spriteinsideMoneyrec->setTexture(*textureinsideMoneyrec); //anders laat die moddervlek niet zien
+        sf::Vector2f insideMoneyrecPosition(19, 40);
+        spriteinsideMoneyrec->setPosition(insideMoneyrecPosition);
+        spriteinsideMoneyrec->setScale(0.29f, 0.2f);
+
+        //E
+        textureE = new sf::Texture();
+        spriteE = new sf::Sprite();
+
+        textureE->loadFromFile("./E.png");
+        spriteE->setTexture(*textureE);
+        sf::Vector2f EPosition(305, 370);
+        spriteE->setPosition(EPosition);
+        spriteE->setScale(0.3f, 0.3f);
+
+        //T
+        textureT = new sf::Texture();
+        spriteT = new sf::Sprite();
+
+        textureT->loadFromFile("./T.png");
+        spriteT->setTexture(*textureT);
+        sf::Vector2f TPosition(65, 370);
+        spriteT->setPosition(TPosition);
+        spriteT->setScale(0.3f, 0.3f);
+
+        //D
+        textureD = new sf::Texture();
+        spriteD = new sf::Sprite();
+
+        textureD->loadFromFile("./D.png");
+        spriteD->setTexture(*textureD);
+        sf::Vector2f DPosition(305, 540);//65,370
+        spriteD->setPosition(DPosition);
+        spriteD->setScale(0.3f, 0.3f);
+
+        //V
+        textureV = new sf::Texture();
+        spriteV = new sf::Sprite();
+
+        textureV->loadFromFile("./V.png");
+        spriteV->setTexture(*textureV);
+        sf::Vector2f VPosition(67, 590); //(+30, +100)
+        spriteV->setPosition(VPosition);
+        spriteV->setScale(0.3f, 0.3f);
+
+        //W
+        textureW = new sf::Texture();
+        spriteW = new sf::Sprite();
+
+        textureW->loadFromFile("./W.png");
+        spriteW->setTexture(*textureW);
+        sf::Vector2f WPosition(587, 445);
+        spriteW->setPosition(WPosition);
+        spriteW->setScale(0.3f, 0.3f);
+
+        //Z
+        textureZ = new sf::Texture();
+        spriteZ = new sf::Sprite();
+
+        textureZ->loadFromFile("./Z.png");
+        spriteZ->setTexture(*textureZ);
+        sf::Vector2f ZPosition(880, 535);
+        spriteZ->setPosition(ZPosition);
+        spriteZ->setScale(0.3f, 0.3f);
+
+        //Rol met wapens
+        textureRolwapens = new sf::Texture();
+        spriteRolwapens = new sf::Sprite();
+
+        textureRolwapens->loadFromFile("./Rolwapens.png");
+        spriteRolwapens->setTexture(*textureRolwapens);
+        sf::Vector2f RolwapensPosition(400, 550);
+        spriteRolwapens->setPosition(RolwapensPosition);
+        spriteRolwapens->setScale(1.0f, 0.6f);
+
+        //als er al iets op die positie staat gaat het niet tenzij je het verkoopt
+
+        textureEnemyOne.loadFromFile("./Robottwee.png");
+        spriteEnemyOne.setTexture(textureEnemyOne);
+        spriteEnemyOne.setScale(0.35f, 0.35f);
+
+        //Goldname
+        textureGoldname = new sf::Texture();
+        spriteGoldname = new sf::Sprite();
+
+        textureGoldname->loadFromFile("./Goldname.png");
+        spriteGoldname->setTexture(*textureGoldname);
+        sf::Vector2f GoldnamePosition(23, 57);
+        spriteGoldname->setPosition(GoldnamePosition);
+        spriteGoldname->setRotation(0);
+        spriteGoldname->setScale(0.28f, 0.28f);
 
 
-    //Pad
+    }
 
-    texture->loadFromFile("./plattegrond.png");
-    sprite->setTexture(*texture);
+    TextureManager::~TextureManager()
+    {
+        // Cleanup
+        delete textureAchtergrond;
+        delete spriteAchtergrond;
 
+        delete texturepaper;
+        delete spritepaper;
 
-    //Kasteel
+        delete textureplay;
+        delete spriteplay;
 
-    texturecastle.loadFromFile("./Castletwee.png");
-    spritecastle.setTexture(texturecastle);
-    sf::Vector2f castlePosition(1050, 80);
-    spritecastle.setPosition(castlePosition);
-    spritecastle.setRotation(30);
-    spritecastle.setScale(1.8f, 1.8f);
+        delete textureoption;
+        delete spriteoption;
 
-    //Paper
-    texturepaper.loadFromFile("./perkament.png");
-    spritepaper.setTexture(texturepaper);
-    sf::Vector2f paperPosition(100, 100);
-    spritepaper.setPosition(paperPosition);
-    spritepaper.setScale(2.0f, 2.0f);
+        delete texturetowerdefensetext;
+        delete spritetowerdefensetext;
 
-    //Upgrades
-    texturevbCannon.loadFromFile("./Cannon.png");
-    spritevbCannon.setTexture(texturevbCannon);
-    sf::Vector2f vbCannonPosition(210, 240);
-    spritevbCannon.setPosition(vbCannonPosition);
-    spritevbCannon.setRotation(270);
-    spritevbCannon.setScale(0.3f, 0.3f);
+        delete texturepad;
+        delete spritepad;
 
-    texturevbCannon2.loadFromFile("./Cannon2.png");
-    spritevbCannon2.setTexture(texturevbCannon2);
-    sf::Vector2f vbCannon2Position(310, 250);
-    spritevbCannon2.setPosition(vbCannon2Position);
-    spritevbCannon2.setRotation(270);
-    spritevbCannon2.setScale(0.3f, 0.3f);
+        delete texturecastle;
+        delete spritecastle;
 
-    texturevbCannon3.loadFromFile("./Cannon3.png");
-    spritevbCannon3.setTexture(texturevbCannon3);
-    sf::Vector2f vbCannon3Position(420, 250);
-    spritevbCannon3.setPosition(vbCannon3Position);
-    spritevbCannon3.setRotation(270);
-    spritevbCannon3.setScale(0.3f, 0.3f);
+        delete texturetowereen;
+        delete spritetowereen;
 
-    texturevbMG.loadFromFile("./MG.png");
-    spritevbMG.setTexture(texturevbMG);
-    sf::Vector2f vbMGPosition(210, 340);
-    spritevbMG.setPosition(vbMGPosition);
-    spritevbMG.setRotation(270);
-    spritevbMG.setScale(0.3f, 0.3f);
+        delete texturetowertwee;
+        delete spritetowertwee;
 
-    texturevbMG2.loadFromFile("./MG2.png");
-    spritevbMG2.setTexture(texturevbMG2);
-    sf::Vector2f vbMG2Position(310, 340);
-    spritevbMG2.setPosition(vbMG2Position);
-    spritevbMG2.setRotation(270);
-    spritevbMG2.setScale(0.3f, 0.3f);
+        delete texturetowerdrie;
+        delete spritetowerdrie;
 
-    texturevbMG3.loadFromFile("./MG3.png");
-    spritevbMG3.setTexture(texturevbMG3);
-    sf::Vector2f vbMG3Position(410, 340);
-    spritevbMG3.setPosition(vbMG3Position);
-    spritevbMG3.setRotation(270);
-    spritevbMG3.setScale(0.3f, 0.3f);
+        delete texturetowervier;
+        delete spritetowervier;
 
-    texturevbMissile_Launcher.loadFromFile("./Missile_Launcher.png");
-    spritevbMissile_Launcher.setTexture(texturevbMissile_Launcher);
-    sf::Vector2f vbMissile_LauncherPosition(210, 440);
-    spritevbMissile_Launcher.setPosition(vbMissile_LauncherPosition);
-    spritevbMissile_Launcher.setRotation(270);
-    spritevbMissile_Launcher.setScale(0.3f, 0.3f);
+        delete texturetowervijf;
+        delete spritetowervijf;
 
-    texturevbMissile_Launcher2.loadFromFile("./Missile_Launcher2.png");
-    spritevbMissile_Launcher2.setTexture(texturevbMissile_Launcher2);
-    sf::Vector2f vbMissile_Launcher2Position(335, 450);
-    spritevbMissile_Launcher2.setPosition(vbMissile_Launcher2Position);
-    spritevbMissile_Launcher2.setRotation(270);
-    spritevbMissile_Launcher2.setScale(0.3f, 0.3f);
+        delete texturetowerzes;
+        delete spritetowerzes;
 
-    texturevbMissile_Launcher3.loadFromFile("./Missile_Launcher3.png");
-    spritevbMissile_Launcher3.setTexture(texturevbMissile_Launcher3);
-    sf::Vector2f vbMissile_Launcher3Position(440, 455);
-    spritevbMissile_Launcher3.setPosition(vbMissile_Launcher3Position);
-    spritevbMissile_Launcher3.setRotation(270);
-    spritevbMissile_Launcher3.setScale(0.3f, 0.3f);
+        delete textureMoneyrec;
+        delete spriteMoneyrec;
 
-    // GamemenuText
+        delete textureinsideMoneyrec;
+        delete spriteinsideMoneyrec;
 
+        delete textureE;
+        delete spriteE;
 
+        delete textureT;
+        delete spriteT;
 
-    //Moder plaatse, Plaats om op te bouwen(als er voldoende munten zijn)
+        delete textureD;
+        delete spriteD;
 
-    texturemudeen.loadFromFile("./mudtwee.png");
-    spritemudeen.setTexture(texturemudeen); //anders laat die moddervlek niet zien
-    sf::Vector2f mudeenPosition(225, 230);
-    spritemudeen.setPosition(mudeenPosition);
-    spritemudeen.setScale(0.3f, 0.3f);
+        delete textureV;
+        delete spriteV;
 
-    texturemudtwee.loadFromFile("./mudtwee.png");
-    spritemudtwee.setTexture(texturemudtwee); //anders laat die moddervlek niet zien
-    sf::Vector2f mudtweePosition(225, 400);
-    spritemudtwee.setPosition(mudtweePosition);
-    spritemudtwee.setScale(0.3f, 0.3f);
+        delete textureW;
+        delete spriteW;
 
-    texturemuddrie.loadFromFile("./mudtwee.png");
-    spritemuddrie.setTexture(texturemuddrie); //anders laat die moddervlek niet zien
-    sf::Vector2f muddriePosition(0, 250);
-    spritemuddrie.setPosition(muddriePosition);
-    spritemuddrie.setScale(0.25f, 0.25f);
+        delete textureZ;
+        delete spriteZ;
 
-    texturemudzes.loadFromFile("./mudtwee.png");
-    spritemudzes.setTexture(texturemudzes); //anders laat die moddervlek niet zien
-    sf::Vector2f mudzesPosition(0, 470);
-    spritemudzes.setPosition(mudzesPosition);
-    spritemudzes.setScale(0.25f, 0.25f);
+        delete textureRolwapens;
+        delete spriteRolwapens;
 
-    texturemudvier.loadFromFile("./mudtwee.png");
-    spritemudvier.setTexture(texturemudvier); //anders laat die moddervlek niet zien
-    sf::Vector2f mudvierPosition(505, 320);
-    spritemudvier.setPosition(mudvierPosition);
-    spritemudvier.setScale(0.3f, 0.3f);
+        delete textureGoldname;
+        delete spriteGoldname;
 
-    texturemudvijf.loadFromFile("./mudtwee.png");
-    spritemudvijf.setTexture(texturemudvijf); //anders laat die moddervlek niet zien
-    sf::Vector2f mudvijfPosition(800, 400);
-    spritemudvijf.setPosition(mudvijfPosition);
-    spritemudvijf.setScale(0.3f, 0.3f);
-
-    //Weapons
-
-    textureshootereen.loadFromFile("./canonzo.png"); // x = +70, y = +40
-    spriteshootereen.setTexture(textureshootereen);
-    sf::Vector2f shootereenPosition(320, 300);
-    spriteshootereen.setPosition(shootereenPosition);
-    spriteshootereen.setRotation(180);
-    spriteshootereen.setScale(0.1f, 0.1f);
-
-    textureshootertwee.loadFromFile("./canonzo.png");
-    spriteshootertwee.setTexture(textureshootertwee);
-    sf::Vector2f shootertweePosition(288, 440);
-    spriteshootertwee.setPosition(shootertweePosition);
-    spriteshootertwee.setScale(0.1f, 0.1f);
-
-    textureshooterdrie.loadFromFile("./Missile_Launcher.png");
-    spriteshooterdrie.setTexture(textureshooterdrie);
-    sf::Vector2f shooterdriePosition(610, 400);
-    spriteshooterdrie.setPosition(shooterdriePosition);
-    spriteshooterdrie.setRotation(180);
-    spriteshooterdrie.setScale(0.4f, 0.4f);
-
-    textureshootervier.loadFromFile("./MG.png");
-    spriteshootervier.setTexture(textureshootervier);
-    sf::Vector2f shootervierPosition(100, 340);
-    spriteshootervier.setPosition(shootervierPosition);
-    spriteshootervier.setRotation(180);
-    spriteshootervier.setScale(0.4f, 0.4f);
-
-    //Weapon Upgrades
-
-    //Enemy
-
-    texturerobottwee.loadFromFile("./Robottwee.png");
-    spriterobottwee.setTexture(texturerobottwee);
-    spriterobottwee.setScale(0.3f, 0.3f);
-
-    //Geld
-
-    texturegold.loadFromFile("./munteindelijk.png"); //moet getal onderaan staan dat het aantal munten bijhoud met geld teken naast
-    spritegold.setTexture(texturegold);
-    spritegold.setScale(0.2f, 0.2f);
+    }
 }
 
-TextureManager::~TextureManager()
-{
-    // Cleanup
-    delete texture;
-    delete sprite;
-}
+/*
+ sf::Vector2f towereenPosition(275, 260);
+
+ sf::Vector2f towertweePosition(275, 430);
+
+ sf::Vector2f towerdriePosition(37, 270);
+
+ sf::Vector2f towervierPosition(37, 490);
+
+ sf::Vector2f towervijfPosition(547, 320);
+
+ sf::Vector2f towerzesPosition(850, 430);
+*/

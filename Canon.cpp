@@ -1,27 +1,26 @@
 #include "Canon.h"
-
-Canon::Canon(sf::Vector2f initialPosition) : arrow(), arrowPosition(initialPosition), initialPosition(initialPosition) {
-    arrow.setFillColor(sf::Color::Black);
-    arrow.setRadius(15.f); //Scale gedaan in plaats van Radius dan gaat het niks weer
-    arrow.setPosition(initialPosition);
-}
-
-void Canon::fire(sf::Vector2f shooterPosition) {
-    float arrowSpeed = 5;
-    arrowPosition.y += arrowSpeed;
-    arrowPosition.x -= arrowSpeed;
-
-    arrow.setPosition(arrowPosition);
-    if (arrowPosition.y < 0 || arrowPosition.x < 0)
-    {
-        arrowPosition.y = 240;
-        arrowPosition.x = 240;
-
-
+#include "EnemyOne.h"
+namespace Towerdefense
+{
+    Canon::Canon(sf::Vector2f initialPosition) : spritecanonleveleen(), Canonposition(initialPosition) {//constrcutor,  member initialization in contructor
+        textureManager.texturecanonleveleen.loadFromFile("./Cannon.png");
+        spritecanonleveleen.setTexture(textureManager.texturecanonleveleen);
+        spritecanonleveleen.setPosition(initialPosition);
+        spritecanonleveleen.setScale(0.35f, 0.35f);
     }
 }
 
-void Canon::update() {
-    float arrowSpeed = 10;
-    arrow.move(0, -arrowSpeed);
-}
+//2 useful unsigned chars or other better usage of memory efficient type?
+
+/*
+        texturecanonleveleen = new sf::Texture();
+        spritecanonleveleen = new sf::Sprite();
+
+        texturecanonleveleen->loadFromFile("./Cannon.png");
+        spritecanonleveleen->setTexture(*texturecanonleveleen);
+        sf::Vector2f TowerdrieCanonPosition(300, 260);
+        spritecanonleveleen->setPosition(TowerdrieCanonPosition);
+        spritecanonleveleen->setRotation(0);
+        spritecanonleveleen->setScale(0.35f, 0.35f);
+
+        */

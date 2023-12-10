@@ -1,18 +1,23 @@
-#pragma once
+#ifndef CANON_POSITION_H
+#define CANON_POSITION_H
 
 #include "Weapon.h"
+#include "TextureManager.h"
+#include "Canonshooting.h"
+#include "EnemyOne.h"
 
-class Canon : public Weapon {
-private:
-    sf::Vector2f initialPosition;
-    sf::Vector2f arrowPosition;
+namespace Towerdefense
+{
+    class Canon : public Canonshooting {
+    private:
+        sf::Vector2f Canonposition;
+        TextureManager textureManager;
 
-public:
-    sf::CircleShape arrow;
+    public:
 
-    Canon(sf::Vector2f initialPosition);
+        sf::Sprite spritecanonleveleen;
 
-    void fire(sf::Vector2f shooterPosition) override;
-    void update() override;
-};
-
+        Canon(sf::Vector2f initialPosition);
+    };
+}
+#endif 

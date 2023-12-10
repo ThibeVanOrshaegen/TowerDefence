@@ -1,19 +1,22 @@
-#pragma once
+#ifndef LASER_H
+#define LASER_H
 
 #include "Weapon.h"
 #include "TextureManager.h"
+#include "Lasershooting.h"
+#include "EnemyOne.h"
+namespace Towerdefense
+{
+    class Laser : public Lasershooting {
+    private:
+        sf::Vector2f laserstraalPosition;
+        TextureManager textureManager;
 
-class Laser : public Weapon {
-private:
-    sf::Vector2f laserPosition;
-    TextureManager textureManager;
+    public:
+        sf::Sprite spritelaserleveleen;
 
-public:
-    sf::Sprite spritelaser;
+        Laser(sf::Vector2f initialPosition);
 
-    Laser(sf::Vector2f initialPosition);
-
-    void fire(sf::Vector2f shootereenPosition) override;
-    void update() override;
-};
-
+    };
+}
+#endif

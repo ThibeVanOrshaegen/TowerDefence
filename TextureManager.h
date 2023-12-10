@@ -1,139 +1,130 @@
-#pragma once
+#ifndef TEXTURE_MANAGER_H
+#define TEXTURE_MANAGER_H
+
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include <memory>
 
-class TextureManager
+namespace Towerdefense
 {
-public:
-    //Title
+    class TextureManager
+    {
+    public:
+        //Title
+        sf::Texture* texturepaper;
+        sf::Sprite* spritepaper;
 
-    sf::Texture texturetitle;
-    sf::Sprite spritetitle;
+        //OpeningScreen
+        sf::Texture* textureAchtergrond;
+        sf::Sprite* spriteAchtergrond;
 
-    //OpeningScreen
+        //Playbutton
+        sf::Texture* textureplay;
+        sf::Sprite* spriteplay;
 
-    sf::Texture textureAchtergrond;
-    sf::Sprite spriteAchtergrond;
+        //Option
+        sf::Texture* textureoption;
+        sf::Sprite* spriteoption;
 
-    //Playbutton
+        //Towerdefensetext
+        sf::Texture* texturetowerdefensetext;
+        sf::Sprite* spritetowerdefensetext;
 
-    sf::Texture textureplay;
-    sf::Sprite spriteplay;
+        //Pad
+        sf::Texture* texturepad;
+        sf::Sprite* spritepad;
 
-    //Playbutton
+        //Kasteel
+        sf::Texture* texturecastle;
+        sf::Sprite* spritecastle;
 
-    sf::Texture textureoption;
-    sf::Sprite spriteoption;
+        //Tower_een
+        sf::Texture* texturetowereen;
+        sf::Sprite* spritetowereen;
 
-    //Towerdefensetext
+        //Tower_twee
+        sf::Texture* texturetowertwee;
+        sf::Sprite* spritetowertwee;
 
-    sf::Texture texturetowerdefensetext;
-    sf::Sprite spritetowerdefensetext;
+        //Tower_drie
+        sf::Texture* texturetowerdrie;
+        sf::Sprite* spritetowerdrie;
 
+        //Tower_vier
+        sf::Texture* texturetowervier;
+        sf::Sprite* spritetowervier;
 
-    //Pad
+        //Tower_vijf
+        sf::Texture* texturetowervijf;
+        sf::Sprite* spritetowervijf;
 
-    sf::Texture* texture;
-    sf::Sprite* sprite;
+        //Tower_zes
+        sf::Texture* texturetowerzes;
+        sf::Sprite* spritetowerzes;
 
-    //Kasteel
+        //Money Rectangle
+        sf::Texture* textureMoneyrec;
+        sf::Sprite* spriteMoneyrec;
 
-    sf::Texture texturecastle;
-    sf::Sprite spritecastle;
+        //Binnekant Money Rectangle
+        sf::Texture* textureinsideMoneyrec;
+        sf::Sprite* spriteinsideMoneyrec;
 
+        //E
+        sf::Texture* textureE;
+        sf::Sprite* spriteE;
 
-    //Perkament 
+        //T
+        sf::Texture* textureT;
+        sf::Sprite* spriteT;
 
-    sf::Texture texturepaper;
-    sf::Sprite spritepaper;
+        //D
+        sf::Texture* textureD;
+        sf::Sprite* spriteD;
 
-    sf::Texture texturevbCannon;
-    sf::Sprite spritevbCannon;
+        //V
+        sf::Texture* textureV;
+        sf::Sprite* spriteV;
 
-    sf::Texture texturevbCannon2;
-    sf::Sprite spritevbCannon2;
+        //W
+        sf::Texture* textureW;
+        sf::Sprite* spriteW;
 
-    sf::Texture texturevbCannon3;
-    sf::Sprite spritevbCannon3;
+        //Z
+        sf::Texture* textureZ;
+        sf::Sprite* spriteZ;
 
-    sf::Texture texturevbMG;
-    sf::Sprite spritevbMG;
-
-    sf::Texture texturevbMG2;
-    sf::Sprite spritevbMG2;
-
-    sf::Texture texturevbMG3;
-    sf::Sprite spritevbMG3;
-
-    sf::Texture texturevbMissile_Launcher;
-    sf::Sprite spritevbMissile_Launcher;
-
-    sf::Texture texturevbMissile_Launcher2;
-    sf::Sprite spritevbMissile_Launcher2;
-
-    sf::Texture texturevbMissile_Launcher3;
-    sf::Sprite spritevbMissile_Launcher3;
-
-    sf::Texture texturegamemenutext;
-    sf::Sprite spritegamemenutext;
-
-    //Moder plaatse, Plaats om op te bouwen(als er voldoende munten zijn)
-
-    sf::Texture texturemudeen;
-    sf::Sprite spritemudeen;
-
-    sf::Texture texturemudtwee;
-    sf::Sprite spritemudtwee;
-
-    sf::Texture texturemuddrie;
-    sf::Sprite spritemuddrie;
-
-    sf::Texture texturemudvier;
-    sf::Sprite spritemudvier;
-
-    sf::Texture texturemudvijf;
-    sf::Sprite spritemudvijf;
-
-    sf::Texture texturemudzes;
-    sf::Sprite spritemudzes;
-
-    //Canon
-
-    sf::Texture textureshootereen;
-    sf::Sprite spriteshootereen;
-
-    sf::Texture textureshootertwee;
-    sf::Sprite spriteshootertwee;
-
-    sf::Texture textureshooterdrie;
-    sf::Sprite spriteshooterdrie;
-
-    sf::Texture textureshootervier;
-    sf::Sprite spriteshootervier;
-
-    //Enemy
-
-    sf::Texture texturerobottwee;
-    sf::Sprite spriterobottwee;
-
-    sf::Texture texturerobotdrie;
-    sf::Sprite spriterobotdrie;
-
-    //Geld
-
-    sf::Texture texturegold;
-    sf::Sprite spritegold;
-
-    //Laser
-    sf::Texture texturelaser;
-    sf::Sprite spritelaser;
-
-    //MG
-    sf::Texture textureMG;
-    sf::Sprite spriteMG;
+        //Rol met wapens
+        sf::Texture* textureRolwapens;
+        sf::Sprite* spriteRolwapens;
 
 
-    TextureManager();
-    ~TextureManager();
-};
+       
 
+        //EnemyOne
+        sf::Texture textureEnemyOne;
+        sf::Sprite spriteEnemyOne;
+
+        sf::Texture* textureGoldname;
+        sf::Sprite* spriteGoldname;
+
+        sf::Texture textureKogelCanon;
+        sf::Sprite spriteKogelCanon;
+
+        sf::Texture textureKogelLaser;
+        sf::Sprite spriteKogelLaser;
+
+        //Canon level 1
+        sf::Texture texturecanonleveleen;
+        sf::Sprite spritecanonleveleen;
+
+        //Laser level 1
+        sf::Texture texturelaserleveleen;
+        sf::Sprite spritelaserleveleen;
+
+        
+        TextureManager();//constructor
+        ~TextureManager(); //destructor
+
+    };
+}
+#endif 
