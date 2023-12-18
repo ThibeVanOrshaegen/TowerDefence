@@ -176,15 +176,50 @@ void Canonshooting::update(float directionX, float directionY)
 }
 
 ```
-- [ ] default values in function definition
+- [X] default values in function definition ~
 ```cpp
+    Beweging::Beweging() : xVelocity(0.0f), yVelocity(0.0f), originalYVelocity(0.0f) {}
+
+    Beweging::Beweging(float xVel, float yVel) : xVelocity(xVel), yVelocity(yVel), originalYVelocity(yVel) {} 
+
+    //Here, 0.0f is used as the default value for xVelocity, yVelocity, and originalYVelocity in the default constructor
 
 ```
-- [ ] useful member variabel
+- [X] useful member variabel
 ```cpp
-
+healthBar_een
+redhealthBar_een_copy
+healthBar_twee
+redhealthBar_twee_copy
+currentmoneyklein
+snel
+traag
+canonkogel
+canonkogeltwee
+canonkogeldrie
+canonkogelvier
+canonkogelvijf
+canonkogelzes
+canonplaats
+canonplaatstwee
+canonplaatsdrie
+canonplaatsvier
+canonplaatsvijf
+canonplaatszes
+laserkogel
+laserkogeltwee
+laserkogeldrie
+laserkogelvier
+laserkogelvijf
+laserkogelzes
+laserplaats
+laserplaatstwee
+laserplaatsdrie
+laserplaatsvier
+laserplaatsvijf
+laserplaatszes
 ```
-- [ ] useful getters and setters for member variables
+- [X] useful getters and setters for member variables
 ```cpp
 #ifndef HEALTH_BAR_H
 #define HEALTH_BAR_H
@@ -348,11 +383,38 @@ namespace Towerdefense
 ```
 - [ ] at least 4 useful const references for variables
 ```cpp
+const int& getCurrentMoney() const { return currentmoney; }
 
 ```
-- [ ] at least 4 useful const references for functions
+- [X] at least 4 useful const references for functions
 ```cpp
+bool getPlay() const { return Play; }
+bool getStop() const { return Stop; }
+bool getSelleen() const { return Selleen; }
+bool getBuyBlue() const { return BuyBlue; }
+bool getBuyRed() const { return BuyRed; }
 
+bool getSelltwee() const { return Selltwee; }
+bool getBuyBluetwee() const { return BuyBluetwee; }
+bool getBuyRedtwee() const { return BuyRedtwee; }
+
+bool getSelldrie() const { return Selldrie; }
+bool getBuyBluedrie() const { return BuyBluedrie; }
+bool getBuyReddrie() const { return BuyReddrie; }
+
+bool getSellvier() const { return Sellvier; }
+bool getBuyBluevier() const { return BuyBluevier; }
+bool getBuyRedvier() const { return BuyRedvier; }
+
+bool getSellvijf() const { return Sellvijf; }
+bool getBuyBluevijf() const { return BuyBluevijf; }
+bool getBuyRedvijf() const { return BuyRedvijf; }
+
+bool getSellzes() const { return Sellzes; }
+bool getBuyBluezes() const { return BuyBluezes; }
+bool getBuyRedzes() const { return BuyRedzes; }
+
+//all the member functions listed are const member functions, and they return values that are not modifiable
 ```
 - [X] at least 4 useful bool
 ```cpp  
@@ -410,28 +472,84 @@ namespace Towerdefense
     window.display();
 }
 ```
-- [ ] dynamic memory allocation (new)
+- [X] dynamic memory allocation (new)
 ```cpp
+ Game::Game() : healthBar_een(sf::Vector2f(0, 410), sf::Vector2f(70, 10), 50),
+     redhealthBar_een_copy(healthBar_een),
+     healthBar_twee(sf::Vector2f(0, 410), sf::Vector2f(70, 10), 60),
+     redhealthBar_twee_copy(healthBar_een),
+     currentmoneyklein(new CurrentMoney(100)), //don't provide this value, the default value of 10 will be used.
+     snel(new Enemy(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 10, 3.0f, 3.0f)),
+     traag(new Enemy(sf::Vector2f(0, 410), sf::Vector2f(50, 50), 10, 1.0f, 1.0f)),
 
+     canonkogel(new Canonshooting(sf::Vector2f(150, 180))),
+     canonkogeltwee(new Canonshooting(sf::Vector2f(150, 180))),
+     canonkogeldrie(new Canonshooting(sf::Vector2f(150, 180))),
+     canonkogelvier(new Canonshooting(sf::Vector2f(150, 180))),
+     canonkogelvijf(new Canonshooting(sf::Vector2f(150, 180))),
+     canonkogelzes(new Canonshooting(sf::Vector2f(150, 180))),
+
+     canonplaats(new Canon(sf::Vector2f(500, 260))),
+     canonplaatstwee(new Canon(sf::Vector2f(500, 260))),
+     canonplaatsdrie(new Canon(sf::Vector2f(500, 260))),
+     canonplaatsvier(new Canon(sf::Vector2f(500, 260))),
+     canonplaatsvijf(new Canon(sf::Vector2f(500, 260))),
+     canonplaatszes(new Canon(sf::Vector2f(500, 260))),
+
+     laserkogel(new Lasershooting(sf::Vector2f(150, 180))),
+     laserkogeltwee(new Lasershooting(sf::Vector2f(150, 180))),
+     laserkogeldrie(new Lasershooting(sf::Vector2f(150, 180))),
+     laserkogelvier(new Lasershooting(sf::Vector2f(150, 180))),
+     laserkogelvijf(new Lasershooting(sf::Vector2f(150, 180))),
+     laserkogelzes(new Lasershooting(sf::Vector2f(150, 180))),
+
+     laserplaats(new Laser(sf::Vector2f(500, 260))),
+     laserplaatstwee(new Laser(sf::Vector2f(500, 260))),
+     laserplaatsdrie(new Laser(sf::Vector2f(500, 260))),
+     laserplaatsvier(new Laser(sf::Vector2f(500, 260))),
+     laserplaatsvijf(new Laser(sf::Vector2f(500, 260))),
+     laserplaatszes(new Laser(sf::Vector2f(500, 260))),
+
+     mouseEventHandler(textureManager) {
+     init();
+ }
 ```
-- [ ] dynamic memory removing (delete)
+- [X] dynamic memory removing (delete)
 ```cpp
-
+Game::~Game()
+{
+    delete snel;
+    delete traag;
+    delete currentmoneyklein;
+}
 ```
 - [ ] 2 useful (modern) call-by-references
 ```cpp
 
 ```
-- [ ] useful string class usage
+- [X] useful string class usage
 ```cpp
-
+if (moneyUpdateTimer.getElapsedTime().asSeconds() >= 3)
+{
+    std::cout << "Current Money: " << currentmoneyklein->currentmoney << std::endl;
+    std::cout << "Level 1" << std::endl;
+    std::cout << std::endl;
+    moneyUpdateTimer.restart(); // Herstart de timer voor de uitvoer
+}
 ```
 - [ ] useful container class
 ```cpp
 
 ```
-- [ ] useful usage of nullptr
-
+- [X] useful usage of nullptr
+```cpp
+auto decrementMoney = [this, moneyDecrement]() {
+    if (currentmoneyklein != nullptr)
+    {
+        currentmoneyklein->subtract(currentmoneyklein->currentmoney, moneyDecrement);
+    }
+    };
+```
       
 - [ ] useful usage of (modern) file-I/O
 ```cpp
@@ -518,7 +636,10 @@ void Game::updateEnemies() {
 - [ ] test-driven development (= written test plan or unit tests)
 - [ ] solve bug ticket (with pull request or commit message issue link and issue branch)
 - [ ] report a bug ticket on another project
-- [ ] usage of a GUI
+- [X] usage of a GUI
+```cpp
+#include <SFML/Graphics.hpp>
+```
 - [ ] usage of OpenGL or other 3D engine
 - [ ] useful usage of an external library (not Qt)
 - [ ] project that communicates (e.g. UART, BT) with hardware
