@@ -551,10 +551,10 @@ auto decrementMoney = [this, moneyDecrement]() {
     };
 ```
       
-- [ ] useful usage of (modern) file-I/O
-```cpp
+- [X] useful usage of (modern) file-I/O
+- [ ] 
+![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/43d846ef-fe29-475b-aa58-6662e73a7359)
 
-```
 - [X] useful exception handling
 ```cpp
   #include <fstream>
