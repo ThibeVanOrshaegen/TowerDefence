@@ -373,9 +373,10 @@ namespace Towerdefense
 #endif
 ```     
 # C++
-- [ ] everything in one or more self-made namespace(s)
+- [X] everything in one or more self-made namespace(s)
 ```cpp
-
+namespace Towerdefense
+{...}
 ```
 - [ ] 2 useful unsigned chars or other better usage of memory efficient type
 ```cpp
@@ -525,6 +526,52 @@ Game::~Game()
 ```
 - [ ] 2 useful (modern) call-by-references
 ```cpp
+ template <typename T>
+ void swap(T& x, T& y) {
+     T temp;
+     temp = x;
+     x = y;
+     y = temp;
+
+     return;
+ }
+
+ sf::Clock timer;
+
+ void Game::run(sf::RenderWindow& window) {
+
+     int moneyIncrement = 1;
+     int moneyDecrement = 2;
+     int nextmoneyIncrement;
+
+auto incrementMoney = [this, moneyIncrement]() {
+    if (currentmoneyklein != nullptr)
+    {
+        currentmoneyklein->sum(currentmoneyklein->currentmoney, moneyIncrement);
+    }
+    };
+incrementMoney();
+
+ if (spriteTruePlay)
+ {
+
+     nextmoneyIncrement = 1;
+     swap(moneyIncrement, nextmoneyIncrement);
+     //std::cout << "moneyIncrement: " << moneyIncrement << ", nextmoneyIncrement: " << nextmoneyIncrement << std::endl;
+
+     updateEnemies();
+
+ }
+ if (!spriteTruePlay)
+ {
+     nextmoneyIncrement = 0;
+     swap(moneyIncrement, nextmoneyIncrement); //call-by-reference
+
+ }
+ if (spriteTrueOpenOption)
+ {
+     window.draw(*(textureManager.spriteRolwapens));
+ }
 
 ```
 - [X] useful string class usage
@@ -619,7 +666,11 @@ void Game::backgroundTask(Game& game)
 
     }
 }
-
+....
+     window.display();
+ }
+ running = false;
+ backgroundThread.join();
 void Game::updateEnemies() {
 
     std::thread snelUpdateThread(&Enemy::updateMoveHealth, snel);
@@ -628,6 +679,8 @@ void Game::updateEnemies() {
     snelUpdateThread.join();
     traagUpdateThread.join();
 }
+
+
 ```
 
 # Uitbreiding
