@@ -1,6 +1,19 @@
 # Algemeen
 
-- [ ] clean main (i.e. nothing in the main that should be in a class)
+- [X] clean main (i.e. nothing in the main that should be in a class)
+```cpp
+#include <SFML/Graphics.hpp>
+#include "Game.h"
+
+using namespace Towerdefense;
+int main() {
+    sf::RenderWindow window(sf::VideoMode(1180, 720), "My Program");
+    Game game;
+    game.run(window);
+    return 0;
+}
+
+```
 - [ ] no globals, but statics if needed
 - [ ] correct protections
 - [ ] maintainability by clean uniform code style and good function naming and/or comments everywhere
@@ -8,7 +21,7 @@
 
 ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/43263220-b49d-4729-85e8-da905d2316b6)
 
-- [ ] one complete project that compiles and does not crash
+- [X] one complete project that compiles and does not crash
 - [ ] fully working project
 - [ ] sufficient git commits (+/- weekly)
 - [ ] correct files on git
@@ -20,7 +33,6 @@
 Canon::Canon() : spritecanonleveleen(), Canonposition(sf::Vector2f(0, 0)) {...}
 
 Beweging::Beweging() : xVelocity(0.0f), yVelocity(0.0f), originalYVelocity(0.0f) {...}
-
 
 ```
 - [X] at least 2 parameterized constructors
@@ -89,13 +101,17 @@ HealthBar::HealthBar(const HealthBar& other)
  }
 
 ```
-- [ ] member initialization in constructors (the stuff behind a colon)
+- [X] member initialization in constructors (the stuff behind a colon)
 ```cpp
-
+Canonshooting::Canonshooting() : spriteCanonKogeltwee(), arrowPosition(sf::Vector2f(0, 0)), direction(sf::Vector2f(-1, -1)) {...}
+//spriteCanonKogeltwee: This member is default-constructed using its default constructor.
+//arrowPosition: This member is initialized with sf::Vector2f(0, 0).
+//direction: This member is initialized with sf::Vector2f(-1, -1).
 ```
 - [ ] constructor forwarding
 ```cpp
-
+HealthBar::HealthBar(const SomeType& someArg)
+    : AnotherConstructor(someArg) {...}
 ```
 - [ ] useful proven (dynamic) polymorphism
 ```cpp
@@ -105,8 +121,59 @@ HealthBar::HealthBar(const HealthBar& other)
 ```cpp
 
 ```
-- [ ] useful member function
+- [X] useful member function
 ```cpp
+#ifndef CANON_POSITION_H
+#define CANON_POSITION_H
+
+#include "Weapon.h"
+#include "TextureManager.h"
+#include "Enemy.h"
+
+namespace Towerdefense
+{
+    class Canonshooting : public Weapon {
+    private:
+        sf::Vector2f arrowPosition;
+        TextureManager textureManager;
+        sf::Vector2f direction;
+        const unsigned char arrowSpeed = 20;
+
+    public:
+        sf::Sprite spriteCanonKogeltwee;
+
+        Canonshooting();
+        Canonshooting(const sf::Vector2f& initialPosition);
+        void fire(sf::Vector2f& shooterPosition, float limit_one, float limit_two, float limit_three, float limit_four) override;
+        void update(float directionX, float directionY) override;
+        void updateprobeer();
+    };
+}
+#endif
+
+void Canonshooting::update(float directionX, float directionY)
+{   direction.x = directionX;
+    direction.y = directionY;
+    spriteCanonKogeltwee.move(direction.x * arrowSpeed, direction.y * arrowSpeed);
+}
+
+ if (spriteBuybluedrie)
+ {
+     
+  drawSpriteIfVisible::drawSpriteVisible(window, canonplaats->spritecanonleveleen, shooterPosition, sf::Vector2f(canon.spritecanonleveleen.getLocalBounds().width / 2, 
+  canon.spritecanonleveleen.getLocalBounds().height / 2));
+         useWeapon(*canonplaats, textureManager.spritecanonleveleen.getPosition(), 1080, 600, 0, 0);
+         drawSpriteIfVisibleshoot::drawSpriteVisibleshoot(window, canonkogel->spriteCanonKogeltwee);
+         useWeapon(*canonkogel, shooterPosition,1080, 600, 0, 0);
+         //canonkogel->update(snel->spriteEnemy.getPosition(), shooterPosition);
+
+         if (snel->spriteEnemy.getPosition().x < canonplaats->spritecanonleveleen.getPosition().x && snel->spriteEnemy.getPosition().y < canonplaats->spritecanonleveleen.getPosition().y)
+         {
+             sf::Vector2f direction(-1.0f, -1.0f);  // move right
+             canonkogel->update(direction.x, direction.y);
+             canonkogel->fire(shooterPosition, 1080, 600, 0, 0);
+         }
+}
 
 ```
 - [ ] default values in function definition
