@@ -14,7 +14,84 @@ int main() {
 }
 
 ```
-- [ ] no globals, but statics if needed
+- [X] no globals, but statics if needed
+```cpp
+#ifndef MOUSE_EVENT_HANDLER_H
+#define MOUSE_EVENT_HANDLER_H
+
+#include <SFML/Graphics.hpp>
+#include "TextureManager.h"
+
+namespace Towerdefense {
+
+    class MouseEventHandler {
+    public:
+        MouseEventHandler(TextureManager& textureManager);
+
+        bool handleMouseClick(const sf::Event& event, sf::RenderWindow& window);
+
+        bool getPlay() const { return Play; }
+        bool getStop() const { return Stop; }
+        bool getSelleen() const { return Selleen; }
+        bool getBuyBlue() const { return BuyBlue; }
+        bool getBuyRed() const { return BuyRed; }
+
+        bool getSelltwee() const { return Selltwee; }
+        bool getBuyBluetwee() const { return BuyBluetwee; }
+        bool getBuyRedtwee() const { return BuyRedtwee; }
+
+        bool getSelldrie() const { return Selldrie; }
+        bool getBuyBluedrie() const { return BuyBluedrie; }
+        bool getBuyReddrie() const { return BuyReddrie; }
+
+        bool getSellvier() const { return Sellvier; }
+        bool getBuyBluevier() const { return BuyBluevier; }
+        bool getBuyRedvier() const { return BuyRedvier; }
+
+        bool getSellvijf() const { return Sellvijf; }
+        bool getBuyBluevijf() const { return BuyBluevijf; }
+        bool getBuyRedvijf() const { return BuyRedvijf; }
+
+        bool getSellzes() const { return Sellzes; }
+        bool getBuyBluezes() const { return BuyBluezes; }
+        bool getBuyRedzes() const { return BuyRedzes; }
+
+        //all the member functions listed are const member functions, and they return values that are not modifiable
+
+
+    private:
+
+        TextureManager& textureManager;
+
+        static bool Play;
+        static bool Stop;
+        static bool Selleen;
+        static bool BuyBlue;
+        static bool BuyRed;
+
+        static bool Selltwee;
+        static bool BuyBluetwee;
+        static bool BuyRedtwee;
+
+        static bool Selldrie;
+        static bool BuyBluedrie;
+        static bool BuyReddrie;
+
+        static bool Sellvier;
+        static bool BuyBluevier;
+        static bool BuyRedvier;
+
+        static bool Sellvijf;
+        static bool BuyBluevijf;
+        static bool BuyRedvijf;
+
+        static bool Sellzes;
+        static bool BuyBluezes;
+        static bool BuyRedzes;  
+    };
+} 
+#endif
+```
 - [ ] correct protections
 - [ ] maintainability by clean uniform code style and good function naming and/or comments everywhere
 - [X] separate header files
@@ -108,13 +185,104 @@ Canonshooting::Canonshooting() : spriteCanonKogeltwee(), arrowPosition(sf::Vecto
 //arrowPosition: This member is initialized with sf::Vector2f(0, 0).
 //direction: This member is initialized with sf::Vector2f(-1, -1).
 ```
-- [ ] constructor forwarding
+- [X] constructor forwarding
 ```cpp
-HealthBar::HealthBar(const SomeType& someArg)
-    : AnotherConstructor(someArg) {...}
+ HealthBar::HealthBar(sf::Vector2f enemyPosition, sf::Vector2f size, unsigned char maxHealth) // primary constructor, Takes parameters enemyPosition, size, and maxHealth, a parameterized constructor.
+     : currentHealth(maxHealth)
+     //currentHealth member variable with the value of maxHealth that is passed as a parameter to the constructor
+ {
+     bar.setPosition(enemyPosition.x, enemyPosition.y - 20);
+     bar.setSize(size);
+     bar.setFillColor(sf::Color::Red);
+ }
 ```
-- [ ] useful proven (dynamic) polymorphism
+- [X] useful proven (dynamic) polymorphism
 ```cpp
+#ifndef WEAPONS_H
+#define WEAPONS_H
+
+#include <SFML/Graphics.hpp>
+namespace Towerdefense
+{
+    class Weapon {
+    public:
+        virtual ~Weapon() = default;
+        virtual void fire(sf::Vector2f& shooterPosition,float limit_one, float limit_two, float limit_three, float limit_four) = 0; //polymorfisme
+        virtual void update(float directionX, float directionY) = 0;
+    };
+}
+#endif
+
+#ifndef CANON_POSITION_H
+#define CANON_POSITION_H
+
+#include "Weapon.h"
+#include "TextureManager.h"
+#include "Enemy.h"
+
+namespace Towerdefense
+{
+    class Canonshooting : public Weapon {
+    private:
+        sf::Vector2f arrowPosition;
+        TextureManager textureManager;
+        sf::Vector2f direction;
+        const unsigned char arrowSpeed = 20;
+
+    public:
+        sf::Sprite spriteCanonKogeltwee;
+
+        Canonshooting();
+        Canonshooting(const sf::Vector2f& initialPosition);
+        void fire(sf::Vector2f& shooterPosition, float limit_one, float limit_two, float limit_three, float limit_four) override;
+        void update(float directionX, float directionY) override;
+        void updateprobeer();
+    };
+}
+#endif
+
+#ifndef CANON_H
+#define CANON_H
+
+#include "Weapon.h"
+#include "TextureManager.h"
+#include "Canonshooting.h"
+#include "Enemy.h"
+
+namespace Towerdefense
+{
+    class Canon : public Canonshooting {
+    private:
+        sf::Vector2f Canonposition;
+        TextureManager textureManager;
+
+    public:
+
+        sf::Sprite spritecanonleveleen;
+
+        Canon(sf::Vector2f initialPosition);
+
+        // Default constructor
+        Canon();
+    };
+}
+#endif
+
+//Canon
+ if (snel->spriteEnemy.getPosition().x < canonplaatstwee->spritecanonleveleen.getPosition().x && snel->spriteEnemy.getPosition().y < canonplaatstwee->spritecanonleveleen.getPosition().y)
+ {
+     sf::Vector2f direction(-1.0f, -1.0f);  // move right
+     canonkogeltwee->update(direction.x, direction.y);
+     canonkogeltwee->fire(shooterPositiontwee,1080,600,0,0);
+ }
+
+//Laser
+if (traag->spriteEnemy.getPosition().x < laserplaatstwee->spritelaserleveleen.getPosition().x && traag->spriteEnemy.getPosition().y < laserplaatstwee->spritelaserleveleen.getPosition().y)
+{
+    sf::Vector2f direction(-1.0f, -1.0f);  // move right
+    laserkogeltwee->update(direction.x, direction.y);
+    laserkogeltwee->fire(shooterPositiontwee, 1080, 600, 0, 0);
+}
 
 ```
 - [ ] useful usage of "this" (if the code does not work without it)
@@ -378,9 +546,11 @@ namespace Towerdefense
 namespace Towerdefense
 {...}
 ```
-- [ ] 2 useful unsigned chars or other better usage of memory efficient type
+- [X] 2 useful unsigned chars or other better usage of memory efficient type
 ```cpp
-
+ unsigned char moneyIncrement = 1;
+ unsigned char moneyDecrement = 2;
+ unsigned char nextmoneyIncrement;
 ```
 - [ ] at least 4 useful const references for variables
 ```cpp
