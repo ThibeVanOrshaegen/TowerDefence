@@ -12,7 +12,3 @@ namespace Towerdefense
     };
 }
 #endif
-
-
-
-
