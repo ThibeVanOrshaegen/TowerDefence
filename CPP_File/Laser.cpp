@@ -6,7 +6,7 @@
 namespace Towerdefense
 {
     Laser::Laser(sf::Vector2f initialPosition) : spritelaserleveleen(), laserstraalPosition(initialPosition) {
-        textureManager.texturelaserleveleen.loadFromFile("./Afbeelding/Missile_Launcher.png");
+        textureManager.texturelaserleveleen.loadFromFile("./Missile_Launcher.png");
         spritelaserleveleen.setTexture(textureManager.texturelaserleveleen);
         spritelaserleveleen.setPosition(initialPosition);
         spritelaserleveleen.setScale(0.35f, 0.35f);
