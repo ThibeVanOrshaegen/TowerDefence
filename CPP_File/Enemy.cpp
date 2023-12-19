@@ -43,6 +43,5 @@ namespace Towerdefense
         sf::Vector2f EnemyOnePosition = spriteEnemy.getPosition();
         beweging.move(EnemyOnePosition);
         spriteEnemy.setPosition(EnemyOnePosition);
-
     }
 }
