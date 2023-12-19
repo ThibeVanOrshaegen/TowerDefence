@@ -6,7 +6,7 @@ namespace Towerdefense
 {
     Canon::Canon(sf::Vector2f initialPosition) : spritecanonleveleen(), Canonposition(initialPosition) {
         //textureManager.texturecanonleveleen.loadFromFile("./Afbeelding/Cannon.png");
-        if (!textureManager.texturecanonleveleen.loadFromFile("./Afbeelding/Cannon.png")) {
+        if (!textureManager.texturecanonleveleen.loadFromFile("./Cannon.png")) {
             // Handle error, e.g., print an error message
             std::cerr << "Failed to load Cannon.png" << std::endl;
         }
