@@ -216,6 +216,8 @@ namespace Towerdefense
         unsigned char moneyDecrement = 2;
         unsigned char nextmoneyIncrement;
 
+        unsigned char nextmoneDecrement;
+
         sf::Vector2f shooterPosition;
         sf::Vector2f shooterPositiontwee;
         sf::Vector2f shooterPositiondrie;
@@ -297,6 +299,7 @@ namespace Towerdefense
             {
                 spriteAmmorotation = true;
             }
+
             if (laserkogel->getOutofRange())
             {
                 outOfRangenew = true;
@@ -1165,32 +1168,30 @@ namespace Towerdefense
 
             if (spriteVisibleP)
             {
-                //if (redhealthBar_een_copy.currentHealth > 40)
-                //{
-                    window.draw(snel->spriteEnemy);
+                if (redhealthBar_een_copy.currentHealth > 40)
+                {
+                window.draw(snel->spriteEnemy);
 
-                    window.draw(healthBar_een.bar);
-                    window.draw(redhealthBar_een_copy.bar);
-                //}
-                //if (redhealthBar_twee_copy.currentHealth > 40)
-                //{
-                    window.draw(traag->spriteEnemy);
+                window.draw(healthBar_een.bar);
+                window.draw(redhealthBar_een_copy.bar);
+                }
+                if (redhealthBar_twee_copy.currentHealth > 40)
+                {
+                window.draw(traag->spriteEnemy);
 
-                    window.draw(healthBar_twee.bar);
-                    window.draw(redhealthBar_twee_copy.bar);
-                //}
+                window.draw(healthBar_twee.bar);
+                window.draw(redhealthBar_twee_copy.bar);
+                }
                 //std::cout << "The health is " << redhealthBar_een_copy.getCurrentHealth() << std::endl; //String class
                 //std::cout << "The healthtwee is " << redhealthBar_twee_copy.getCurrentHealth() << std::endl; //String class
 
                 if (spriteTruePlay)
                 {
-
                     nextmoneyIncrement = 1;
                     swap(moneyIncrement, nextmoneyIncrement);
                     //std::cout << "moneyIncrement: " << moneyIncrement << ", nextmoneyIncrement: " << nextmoneyIncrement << std::endl;
 
                     updateEnemies();
-
                 }
                 if (!spriteTruePlay)
                 {
@@ -1211,15 +1212,3 @@ namespace Towerdefense
     }
 }
 
-//geen unsigned char gebruikt want heb aangpast in healthbar mss kan ik nog doen met template
-
-//wat moet nog gebeuren
-/*
-grenzen verfijnd 1180,70,0,0
-wapen alle schieten als wapen draaid zelfde voorwaarde
-Play(P) verandere in Play(G)
-Game over als aan kasteel geraakt
-Nog een useful (modern) call-by-references
-namespace nakijken of aanpassen
-git update
-*/
