@@ -1158,7 +1158,7 @@ namespace Towerdefense
                         }
                     }
                 }
-            }
+            
             /*mss nie allemaal laten richten op snel bv de Laser alleen lucht (nieuwe enemeyvlieg) en de Canon alleen grond Enmey, snel->spriteEnemy
             */
 
@@ -1202,6 +1202,7 @@ namespace Towerdefense
                 {
                     window.draw(*(textureManager.spriteRolwapens));
                 }
+            }
             }
             window.display();
         }
