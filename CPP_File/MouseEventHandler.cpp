@@ -5,7 +5,7 @@ namespace Towerdefense {
     MouseEventHandler::MouseEventHandler(TextureManager& textureManager) : textureManager(textureManager) {
     }
 
-    // Define Probeersel
+    // Static member variable definitions for button states
     bool Towerdefense::MouseEventHandler::Play = false;
     bool Towerdefense::MouseEventHandler::Stop = false;
 
@@ -39,6 +39,7 @@ namespace Towerdefense {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
+                // Check if the Play button is clicked
                 if (mousePosition.x >= textureManager.spritePlayButton->getPosition().x &&
                     mousePosition.x <= textureManager.spritePlayButton->getPosition().x + textureManager.spritePlayButton->getGlobalBounds().width &&
                     mousePosition.y >= textureManager.spritePlayButton->getPosition().y &&
@@ -211,4 +212,4 @@ namespace Towerdefense {
         return false; // No button clicked
     }
 
-} // namespace Towerdefense
+}
