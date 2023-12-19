@@ -93,7 +93,7 @@ namespace Towerdefense {
 #endif
 ```
 - [ ] correct protections
-- [ ] maintainability by clean uniform code style and good function naming and/or comments everywhere
+- [X] maintainability by clean uniform code style and good function naming and/or comments everywhere
 - [X] separate header files
 
 ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/43263220-b49d-4729-85e8-da905d2316b6)
@@ -102,7 +102,7 @@ namespace Towerdefense {
 - [ ] fully working project
 - [X] sufficient git commits (+/- weekly)
 - [X] correct files on git
-- [ ] working build manual as readme on GitHub (project must be possible to build from scratch on a clean PC)
+- [X] working build manual as readme on GitHub (project must be possible to build from scratch on a clean PC)
 # OOP
 - [X] at least 2 default constructors
 ```cpp
@@ -857,7 +857,7 @@ void Game::updateEnemies() {
 - [ ] useful Qt class
 - [ ] useful usage of signals/slots
 - [ ] test-driven development (= written test plan or unit tests)
-- [ ] solve bug ticket (with pull request or commit message issue link and issue branch)
+- [X] solve bug ticket (with pull request or commit message issue link and issue branch)
 - [ ] report a bug ticket on another project
 - [X] usage of a GUI
 ```cpp
@@ -870,4 +870,18 @@ a nice extra that you think that should deserve grading (stuff you put time in a
 
 # Working build manual
 - [ ] install Visual Studio 2022 Community via this link https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta
-- [ ] 
+- [ ] install SFML Visual C++ 17 (2022) - 64-bit via this link https://www.sfml-dev.org/download/sfml/2.6.1/
+- [ ] Install these ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/4482623b-9689-4921-b0eb-e8e1d45e1346)
+- [ ] Then click on ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/283fe636-db9c-49fc-97c5-427a286839fb) and enter this as clone repository link https://github.com/ThibeVanOrshaegen/OOPFiles.git
+- [ ] Click right on the mouse and open properties ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/1c8ccc73-b635-4fd5-bb2f-d213eb1a85b2)
+- [ ] Go to C/C++ and in the include ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/b6559039-0c7a-442f-b8b8-ce632cb6e7eb) you copie and past you link form the SFML include ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/e55ea3f3-ef76-47c3-98bd-595245ed315e)
+- [ ] Go in Linker and paste the lib path ![image](https://github.com/ThibeVanOrshaegen/OOPFiles/assets/114075982/d4ed4798-007c-46fb-9f3e-a930193cd6fb)
+- [ ] Build the project
+- [ ] Hit play
+
+
+
+
+
+
+
