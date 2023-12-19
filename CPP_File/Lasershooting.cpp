@@ -8,12 +8,12 @@ namespace Towerdefense
 {
     Lasershooting::Lasershooting() : spriteLaserKogeltwee(), laserstraalPosition(sf::Vector2f(0, 0)), direction(sf::Vector2f(-1, -1))
     {
-        textureManager.textureKogelLaser.loadFromFile("./Afbeelding/Missile.png");
+        textureManager.textureKogelLaser.loadFromFile("./Missile.png");
         spriteLaserKogeltwee.setTexture(textureManager.textureKogelCanon);
         spriteLaserKogeltwee.setScale(0.4f, 0.4f);
     }
     Lasershooting::Lasershooting(const sf::Vector2f& initialPosition) : spriteLaserKogeltwee(), laserstraalPosition(initialPosition), direction(sf::Vector2f(-1, -1)) {
-        textureManager.textureKogelLaser.loadFromFile("./Afbeelding/Missile.png");
+        textureManager.textureKogelLaser.loadFromFile("./Missile.png");
         spriteLaserKogeltwee.setTexture(textureManager.textureKogelLaser);
         spriteLaserKogeltwee.setPosition(initialPosition);
         spriteLaserKogeltwee.setScale(0.3f, 0.4f);
@@ -42,3 +42,4 @@ namespace Towerdefense
         spriteLaserKogeltwee.move(direction.x * LaserSpeed, direction.y * LaserSpeed);
     }
 };
+
