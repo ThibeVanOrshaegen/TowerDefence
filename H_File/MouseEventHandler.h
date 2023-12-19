@@ -8,6 +8,8 @@ namespace Towerdefense {
 
     class MouseEventHandler {
     public:
+
+        // Constructor that takes a TextureManager reference
         MouseEventHandler(TextureManager& textureManager);
 
         bool handleMouseClick(const sf::Event& event, sf::RenderWindow& window);
@@ -45,6 +47,7 @@ namespace Towerdefense {
 
         TextureManager& textureManager;
 
+        // Static flags representing various states based on mouse clicks
         static bool Play;
         static bool Stop;
         static bool Selleen;
@@ -69,12 +72,10 @@ namespace Towerdefense {
 
         static bool Sellzes;
         static bool BuyBluezes;
-        static bool BuyRedzes;
-
-        
+        static bool BuyRedzes;     
     };
-
-} // namespace Towerdefense
+}
 
 #endif
+
 
