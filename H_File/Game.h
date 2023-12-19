@@ -18,14 +18,17 @@
 
 namespace Towerdefense
 {
+	// Forward declaration of CurrentMoney class
 	class CurrentMoney;
 
+	// Declaration of the Game class
 	class Game {
 
 	public:
 		Game();
 		~Game();
 
+		// Method to check if the game is running
 		bool isRunning() const { return running; }
 
 		void run(sf::RenderWindow& window);
@@ -36,6 +39,8 @@ namespace Towerdefense
 		void useWeapon(Weapon& weapon, sf::Vector2f shooterPosition, float limit_one, float limit_two, float limit_three, float limit_four);
 		void updateRotationGame();
 		void backgroundTask(Game& game);
+
+		// Method to swap two values
 		void swap(unsigned char & x, unsigned char & y) {
 			int temp = x;
 			x = y;
@@ -43,6 +48,7 @@ namespace Towerdefense
 		}
 		sf::Vector2f direction;
 
+		// Static variables used for various game state and control flags
 		static bool isPKeyPressed;
 		static bool isGKeyPressed;
 		static bool spriteVisibleP;
@@ -127,11 +133,14 @@ namespace Towerdefense
 		Enemy* snel;
 		Enemy* traag;
 
+		// Updaterotation and MouseEventHandler objects
 		Updaterotation updaterotation;
 		MouseEventHandler mouseEventHandler;
 
 
 		void init();
+
+		// Unique pointer for the currentWeapon
 		std::unique_ptr<Weapon> currentWeapon;
 
 	private:
@@ -139,4 +148,5 @@ namespace Towerdefense
 	};
 
 }
+#endif
 #endif
