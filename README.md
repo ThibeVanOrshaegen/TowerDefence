@@ -100,8 +100,8 @@ namespace Towerdefense {
 
 - [X] one complete project that compiles and does not crash
 - [ ] fully working project
-- [ ] sufficient git commits (+/- weekly)
-- [ ] correct files on git
+- [X] sufficient git commits (+/- weekly)
+- [X] correct files on git
 - [ ] working build manual as readme on GitHub (project must be possible to build from scratch on a clean PC)
 # OOP
 - [X] at least 2 default constructors
