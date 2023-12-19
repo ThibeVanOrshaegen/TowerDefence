@@ -10,7 +10,7 @@ namespace Towerdefense
         textureAchtergrond = new sf::Texture();
         spriteAchtergrond = new sf::Sprite();
 
-        textureAchtergrond->loadFromFile("./Afbeelding/plattegrond.png");
+        textureAchtergrond->loadFromFile("./plattegrond.png");
         spriteAchtergrond->setTexture(*textureAchtergrond);
         sf::Vector2f AchtergrondPosition(0, 0);
         spriteAchtergrond->setPosition(AchtergrondPosition);
@@ -20,7 +20,7 @@ namespace Towerdefense
         textureGameopenmenu = new sf::Texture();
         spriteGameopenmenu = new sf::Sprite();
 
-        textureGameopenmenu->loadFromFile("./Afbeelding/cooltitlescreen.jpg");
+        textureGameopenmenu->loadFromFile("./cooltitlescreen.jpg");
         spriteGameopenmenu->setTexture(*textureGameopenmenu);
         sf::Vector2f AchtergrondmenuPosition(0, 0);
         spriteGameopenmenu->setPosition(AchtergrondmenuPosition);
@@ -30,7 +30,7 @@ namespace Towerdefense
         texturepaperopenmenu = new sf::Texture();
         spritepaperopenmenu = new sf::Sprite();
 
-        texturepaperopenmenu->loadFromFile("./Afbeelding/paperrolverticaal.png");
+        texturepaperopenmenu->loadFromFile("./paperrolverticaal.png");
         spritepaperopenmenu->setTexture(*texturepaperopenmenu);
         sf::Vector2f TitlemenuPosition(10, 200);
         spritepaperopenmenu->setPosition(TitlemenuPosition);
@@ -40,7 +40,7 @@ namespace Towerdefense
         textureplaybuttonmenu = new sf::Texture();
         spriteplaybuttonmenu = new sf::Sprite();
 
-        textureplaybuttonmenu->loadFromFile("./Afbeelding/PlayGT.png");
+        textureplaybuttonmenu->loadFromFile("./PlayGT.png");
         spriteplaybuttonmenu->setTexture(*textureplaybuttonmenu);
         sf::Vector2f PlaybuttonmenuPosition(150, 290);
         spriteplaybuttonmenu->setPosition(PlaybuttonmenuPosition);
@@ -50,7 +50,7 @@ namespace Towerdefense
         textureoptionbuttonmenu = new sf::Texture();
         spriteoptionbuttonmenu = new sf::Sprite();
 
-        textureoptionbuttonmenu->loadFromFile("./Afbeelding/Newoptions.png");
+        textureoptionbuttonmenu->loadFromFile("./Newoptions.png");
         spriteoptionbuttonmenu->setTexture(*textureoptionbuttonmenu);
         sf::Vector2f optionmenuPosition(140, 350);
         spriteoptionbuttonmenu->setPosition(optionmenuPosition);
@@ -60,7 +60,7 @@ namespace Towerdefense
         texturetowerdefensetextmenu = new sf::Texture();
         spritetowerdefensetextmenu = new sf::Sprite();
 
-        texturetowerdefensetextmenu->loadFromFile("./Afbeelding/towertextonder.png");
+        texturetowerdefensetextmenu->loadFromFile("./towertextonder.png");
         spritetowerdefensetextmenu->setTexture(*texturetowerdefensetextmenu);
         sf::Vector2f towerdefensetextmenuPosition(0, 20);
         spritetowerdefensetextmenu->setPosition(towerdefensetextmenuPosition);
@@ -70,7 +70,7 @@ namespace Towerdefense
         texturetowerdefensetextmenueen = new sf::Texture();
         spritetowerdefensetextmenueen = new sf::Sprite();
 
-        texturetowerdefensetextmenueen->loadFromFile("./Afbeelding/Menueen.png");
+        texturetowerdefensetextmenueen->loadFromFile("./Menueen.png");
         spritetowerdefensetextmenueen->setTexture(*texturetowerdefensetextmenueen);
         sf::Vector2f towerdefensetextmenueenPosition(155, 90);
         spritetowerdefensetextmenueen->setPosition(towerdefensetextmenueenPosition);
@@ -80,7 +80,7 @@ namespace Towerdefense
         texturetowerdefensetextmenutwee = new sf::Texture();
         spritetowerdefensetextmenutwee = new sf::Sprite();
 
-        texturetowerdefensetextmenutwee->loadFromFile("./Afbeelding/Menutwee.png");
+        texturetowerdefensetextmenutwee->loadFromFile("./Menutwee.png");
         spritetowerdefensetextmenutwee->setTexture(*texturetowerdefensetextmenutwee);
         sf::Vector2f towerdefensetextmenutweePosition(155, 190);
         spritetowerdefensetextmenutwee->setPosition(towerdefensetextmenutweePosition);
@@ -90,7 +90,7 @@ namespace Towerdefense
         texturetowerdefensetextmenudrie = new sf::Texture();
         spritetowerdefensetextmenudrie = new sf::Sprite();
 
-        texturetowerdefensetextmenudrie->loadFromFile("./Afbeelding/Menudrie.png");
+        texturetowerdefensetextmenudrie->loadFromFile("./Menudrie.png");
         spritetowerdefensetextmenudrie->setTexture(*texturetowerdefensetextmenudrie);
         sf::Vector2f towerdefensetextmenudriePosition(155, 310);
         spritetowerdefensetextmenudrie->setPosition(towerdefensetextmenudriePosition);
@@ -100,7 +100,7 @@ namespace Towerdefense
         texturetowerdefensetextmenuvier = new sf::Texture();
         spritetowerdefensetextmenuvier = new sf::Sprite();
 
-        texturetowerdefensetextmenuvier->loadFromFile("./Afbeelding/Menuvier.png");
+        texturetowerdefensetextmenuvier->loadFromFile("./Menuvier.png");
         spritetowerdefensetextmenuvier->setTexture(*texturetowerdefensetextmenuvier);
         sf::Vector2f towerdefensetextmenuvierPosition(155, 390);
         spritetowerdefensetextmenuvier->setPosition(towerdefensetextmenuvierPosition);
@@ -110,7 +110,7 @@ namespace Towerdefense
         texturetowerdefensetextmenuvijf = new sf::Texture();
         spritetowerdefensetextmenuvijf = new sf::Sprite();
 
-        texturetowerdefensetextmenuvijf->loadFromFile("./Afbeelding/Menuvijf.png");
+        texturetowerdefensetextmenuvijf->loadFromFile("./Menuvijf.png");
         spritetowerdefensetextmenuvijf->setTexture(*texturetowerdefensetextmenuvijf);
         sf::Vector2f towerdefensetextmenuvijfPosition(155, 460);
         spritetowerdefensetextmenuvijf->setPosition(towerdefensetextmenuvijfPosition);
@@ -121,7 +121,7 @@ namespace Towerdefense
         texturePlayButton = new sf::Texture();
         spritePlayButton = new sf::Sprite();
 
-        texturePlayButton->loadFromFile("./Afbeelding/PlayRed.png");
+        texturePlayButton->loadFromFile("./PlayRed.png");
         spritePlayButton->setTexture(*texturePlayButton);
         sf::Vector2f PlayButtonPosition(10, 10);
         spritePlayButton->setPosition(PlayButtonPosition);
@@ -131,7 +131,7 @@ namespace Towerdefense
         texturePauseButton = new sf::Texture();
         spritePauseButton = new sf::Sprite();
 
-        texturePauseButton->loadFromFile("./Afbeelding/PauseRed.png");
+        texturePauseButton->loadFromFile("./PauseRed.png");
         spritePauseButton->setTexture(*texturePauseButton);
         sf::Vector2f PauseButtonPosition(60, 10);
         spritePauseButton->setPosition(PauseButtonPosition);
@@ -141,7 +141,7 @@ namespace Towerdefense
         textureSelleenButton = new sf::Texture();
         spriteSelleenButton = new sf::Sprite();
 
-        textureSelleenButton->loadFromFile("./Afbeelding/sell.png");
+        textureSelleenButton->loadFromFile("./sell.png");
         spriteSelleenButton->setTexture(*textureSelleenButton);
         sf::Vector2f SelleenButtonPosition(20, 225);
         spriteSelleenButton->setPosition(SelleenButtonPosition);
@@ -151,7 +151,7 @@ namespace Towerdefense
         textureShopeenBlueButton = new sf::Texture();
         spriteShopeenBlueButton = new sf::Sprite();
 
-        textureShopeenBlueButton->loadFromFile("./Afbeelding/BuyBlue.png");
+        textureShopeenBlueButton->loadFromFile("./BuyBlue.png");
         spriteShopeenBlueButton->setTexture(*textureShopeenBlueButton);
         sf::Vector2f ShopeenBlueButtonPosition(120, 225);
         spriteShopeenBlueButton->setPosition(ShopeenBlueButtonPosition);
@@ -161,7 +161,7 @@ namespace Towerdefense
         textureShopeenButton = new sf::Texture();
         spriteShopeenButton = new sf::Sprite();
 
-        textureShopeenButton->loadFromFile("./Afbeelding/BuyRed.png");
+        textureShopeenButton->loadFromFile("./BuyRed.png");
         spriteShopeenButton->setTexture(*textureShopeenButton);
         sf::Vector2f ShopeenButtonPosition(70, 225);
         spriteShopeenButton->setPosition(ShopeenButtonPosition);
@@ -171,7 +171,7 @@ namespace Towerdefense
         textureSelltweeButton = new sf::Texture();
         spriteSelltweeButton = new sf::Sprite();
 
-        textureSelltweeButton->loadFromFile("./Afbeelding/sell.png");
+        textureSelltweeButton->loadFromFile("./sell.png");
         spriteSelltweeButton->setTexture(*textureSelltweeButton);
         sf::Vector2f SelltweeButtonPosition(20, 595);
         spriteSelltweeButton->setPosition(SelltweeButtonPosition);
@@ -181,7 +181,7 @@ namespace Towerdefense
         textureShoptweeBlueButton = new sf::Texture();
         spriteShoptweeBlueButton = new sf::Sprite();
 
-        textureShoptweeBlueButton->loadFromFile("./Afbeelding/BuyBlue.png");
+        textureShoptweeBlueButton->loadFromFile("./BuyBlue.png");
         spriteShoptweeBlueButton->setTexture(*textureShoptweeBlueButton);
         sf::Vector2f ShoptweeBlueButtonPosition(120, 595);
         spriteShoptweeBlueButton->setPosition(ShoptweeBlueButtonPosition);
@@ -191,7 +191,7 @@ namespace Towerdefense
         textureShoptweeButton = new sf::Texture();
         spriteShoptweeButton = new sf::Sprite();
 
-        textureShoptweeButton->loadFromFile("./Afbeelding/BuyRed.png");
+        textureShoptweeButton->loadFromFile("./BuyRed.png");
         spriteShoptweeButton->setTexture(*textureShoptweeButton);
         sf::Vector2f ShoptweeButtonPosition(70, 595);
         spriteShoptweeButton->setPosition(ShoptweeButtonPosition);
@@ -201,7 +201,7 @@ namespace Towerdefense
         textureSelldrieButton = new sf::Texture();
         spriteSelldrieButton = new sf::Sprite();
 
-        textureSelldrieButton->loadFromFile("./Afbeelding/sell.png");
+        textureSelldrieButton->loadFromFile("./sell.png");
         spriteSelldrieButton->setTexture(*textureSelldrieButton);
         sf::Vector2f SelldrieButtonPosition(260, 370);
         spriteSelldrieButton->setPosition(SelldrieButtonPosition);
@@ -211,7 +211,7 @@ namespace Towerdefense
         textureShopdrieBlueButton = new sf::Texture();
         spriteShopdrieBlueButton = new sf::Sprite();
 
-        textureShopdrieBlueButton->loadFromFile("./Afbeelding/BuyBlue.png");
+        textureShopdrieBlueButton->loadFromFile("./BuyBlue.png");
         spriteShopdrieBlueButton->setTexture(*textureShopdrieBlueButton);
         sf::Vector2f ShopdrieBlueButtonPosition(360, 370);
         spriteShopdrieBlueButton->setPosition(ShopdrieBlueButtonPosition);
@@ -221,7 +221,7 @@ namespace Towerdefense
         textureShopdrieButton = new sf::Texture();
         spriteShopdrieButton = new sf::Sprite();
 
-        textureShopdrieButton->loadFromFile("./Afbeelding/BuyRed.png");
+        textureShopdrieButton->loadFromFile("./BuyRed.png");
         spriteShopdrieButton->setTexture(*textureShopdrieButton);
         sf::Vector2f ShopdrieButtonPosition(310, 370);
         spriteShopdrieButton->setPosition(ShopdrieButtonPosition);
@@ -231,7 +231,7 @@ namespace Towerdefense
         textureSellvierButton = new sf::Texture();
         spriteSellvierButton = new sf::Sprite();
 
-        textureSellvierButton->loadFromFile("./Afbeelding/sell.png");
+        textureSellvierButton->loadFromFile("./sell.png");
         spriteSellvierButton->setTexture(*textureSellvierButton);
         sf::Vector2f SellvierButtonPosition(260, 543);
         spriteSellvierButton->setPosition(SellvierButtonPosition);
@@ -241,7 +241,7 @@ namespace Towerdefense
         textureShopvierBlueButton = new sf::Texture();
         spriteShopvierBlueButton = new sf::Sprite();
 
-        textureShopvierBlueButton->loadFromFile("./Afbeelding/BuyBlue.png");
+        textureShopvierBlueButton->loadFromFile("./BuyBlue.png");
         spriteShopvierBlueButton->setTexture(*textureShopvierBlueButton);
         sf::Vector2f ShopvierBlueButtonPosition(360, 543);
         spriteShopvierBlueButton->setPosition(ShopvierBlueButtonPosition);
@@ -251,7 +251,7 @@ namespace Towerdefense
         textureShopvierButton = new sf::Texture();
         spriteShopvierButton = new sf::Sprite();
 
-        textureShopvierButton->loadFromFile("./Afbeelding/BuyRed.png");
+        textureShopvierButton->loadFromFile("./BuyRed.png");
         spriteShopvierButton->setTexture(*textureShopvierButton);
         sf::Vector2f ShopvierButtonPosition(310, 543);
         spriteShopvierButton->setPosition(ShopvierButtonPosition);
@@ -261,7 +261,7 @@ namespace Towerdefense
         textureSellvijfButton = new sf::Texture();
         spriteSellvijfButton = new sf::Sprite();
 
-        textureSellvijfButton->loadFromFile("./Afbeelding/sell.png");
+        textureSellvijfButton->loadFromFile("./sell.png");
         spriteSellvijfButton->setTexture(*textureSellvijfButton);
         sf::Vector2f SellvijfButtonPosition(542, 280);
         spriteSellvijfButton->setPosition(SellvijfButtonPosition);
@@ -271,7 +271,7 @@ namespace Towerdefense
         textureShopvijfBlueButton = new sf::Texture();
         spriteShopvijfBlueButton = new sf::Sprite();
 
-        textureShopvijfBlueButton->loadFromFile("./Afbeelding/BuyBlue.png");
+        textureShopvijfBlueButton->loadFromFile("./BuyBlue.png");
         spriteShopvijfBlueButton->setTexture(*textureShopvijfBlueButton);
         sf::Vector2f ShopvijfBlueButtonPosition(642, 280);
         spriteShopvijfBlueButton->setPosition(ShopvijfBlueButtonPosition);
@@ -281,7 +281,7 @@ namespace Towerdefense
         textureShopvijfButton = new sf::Texture();
         spriteShopvijfButton = new sf::Sprite();
 
-        textureShopvijfButton->loadFromFile("./Afbeelding/BuyRed.png");
+        textureShopvijfButton->loadFromFile("./BuyRed.png");
         spriteShopvijfButton->setTexture(*textureShopvijfButton);
         sf::Vector2f ShopvijfButtonPosition(592, 280);
         spriteShopvijfButton->setPosition(ShopvijfButtonPosition);
@@ -291,7 +291,7 @@ namespace Towerdefense
         textureSellzesButton = new sf::Texture();
         spriteSellzesButton = new sf::Sprite();
 
-        textureSellzesButton->loadFromFile("./Afbeelding/sell.png");
+        textureSellzesButton->loadFromFile("./sell.png");
         spriteSellzesButton->setTexture(*textureSellzesButton);
         sf::Vector2f SellzesButtonPosition(840, 543);
         spriteSellzesButton->setPosition(SellzesButtonPosition);
@@ -301,7 +301,7 @@ namespace Towerdefense
         textureShopzesBlueButton = new sf::Texture();
         spriteShopzesBlueButton = new sf::Sprite();
 
-        textureShopzesBlueButton->loadFromFile("./Afbeelding/BuyBlue.png");
+        textureShopzesBlueButton->loadFromFile("./BuyBlue.png");
         spriteShopzesBlueButton->setTexture(*textureShopzesBlueButton);
         sf::Vector2f ShopzesBlueButtonPosition(940, 543);
         spriteShopzesBlueButton->setPosition(ShopzesBlueButtonPosition);
@@ -311,7 +311,7 @@ namespace Towerdefense
         textureShopzesButton = new sf::Texture();
         spriteShopzesButton = new sf::Sprite();
 
-        textureShopzesButton->loadFromFile("./Afbeelding/BuyRed.png");
+        textureShopzesButton->loadFromFile("./BuyRed.png");
         spriteShopzesButton->setTexture(*textureShopzesButton);
         sf::Vector2f ShopzesButtonPosition(890, 543);
         spriteShopzesButton->setPosition(ShopzesButtonPosition);
@@ -322,7 +322,7 @@ namespace Towerdefense
         textureOptionButton = new sf::Texture();
         spriteOptionButton = new sf::Sprite();
 
-        textureOptionButton->loadFromFile("./Afbeelding/OptionButton.png");
+        textureOptionButton->loadFromFile("./OptionButton.png");
         spriteOptionButton->setTexture(*textureOptionButton);
         sf::Vector2f OptionButtonPosition(110, 10);
         spriteOptionButton->setPosition(OptionButtonPosition);
@@ -332,7 +332,7 @@ namespace Towerdefense
         textureRolwapens = new sf::Texture();
         spriteRolwapens = new sf::Sprite();
 
-        textureRolwapens->loadFromFile("./Afbeelding/Rolwapens.png");
+        textureRolwapens->loadFromFile("./Rolwapens.png");
         spriteRolwapens->setTexture(*textureRolwapens);
         sf::Vector2f RolwapensPosition(10, 10);
         spriteRolwapens->setPosition(RolwapensPosition);
@@ -342,7 +342,7 @@ namespace Towerdefense
         texturecastle = new sf::Texture();
         spritecastle = new sf::Sprite();
 
-        texturecastle->loadFromFile("./Afbeelding/Castletwee.png");
+        texturecastle->loadFromFile("./Castletwee.png");
         spritecastle->setTexture(*texturecastle);
         sf::Vector2f castlePosition(1050, 80);
         spritecastle->setPosition(castlePosition);
@@ -353,7 +353,7 @@ namespace Towerdefense
         texturetowereen = new sf::Texture();
         spritetowereen = new sf::Sprite();
 
-        texturetowereen->loadFromFile("./Afbeelding/Tower.png");
+        texturetowereen->loadFromFile("./Tower.png");
         spritetowereen->setTexture(*texturetowereen); //anders laat die moddervlek niet zien
         sf::Vector2f towereenPosition(275, 260);
         spritetowereen->setPosition(towereenPosition);
@@ -363,7 +363,7 @@ namespace Towerdefense
         texturetowertwee = new sf::Texture();
         spritetowertwee = new sf::Sprite();
 
-        texturetowertwee->loadFromFile("./Afbeelding/Tower.png");
+        texturetowertwee->loadFromFile("./Tower.png");
         spritetowertwee->setTexture(*texturetowertwee); //anders laat die moddervlek niet zien
         sf::Vector2f towertweePosition(275, 430);
         spritetowertwee->setPosition(towertweePosition);
@@ -373,7 +373,7 @@ namespace Towerdefense
         texturetowerdrie = new sf::Texture();
         spritetowerdrie = new sf::Sprite();
 
-        texturetowerdrie->loadFromFile("./Afbeelding/Tower.png");
+        texturetowerdrie->loadFromFile("./Tower.png");
         spritetowerdrie->setTexture(*texturetowerdrie); //anders laat die moddervlek niet zien
         sf::Vector2f towerdriePosition(37, 270);
         spritetowerdrie->setPosition(towerdriePosition);
@@ -383,7 +383,7 @@ namespace Towerdefense
         texturetowervier = new sf::Texture();
         spritetowervier = new sf::Sprite();
 
-        texturetowervier->loadFromFile("./Afbeelding/Tower.png");
+        texturetowervier->loadFromFile("./Tower.png");
         spritetowervier->setTexture(*texturetowervier); //anders laat die moddervlek niet zien
         sf::Vector2f towervierPosition(37, 490);
         spritetowervier->setPosition(towervierPosition);
@@ -393,7 +393,7 @@ namespace Towerdefense
         texturetowervijf = new sf::Texture();
         spritetowervijf = new sf::Sprite();
 
-        texturetowervijf->loadFromFile("./Afbeelding/Tower.png");
+        texturetowervijf->loadFromFile("./Tower.png");
         spritetowervijf->setTexture(*texturetowervijf); //anders laat die moddervlek niet zien
         sf::Vector2f towervijfPosition(547, 320);
         spritetowervijf->setPosition(towervijfPosition);
@@ -403,7 +403,7 @@ namespace Towerdefense
         texturetowerzes = new sf::Texture();
         spritetowerzes = new sf::Sprite();
 
-        texturetowerzes->loadFromFile("./Afbeelding/Tower.png");
+        texturetowerzes->loadFromFile("./Tower.png");
         spritetowerzes->setTexture(*texturetowerzes); //anders laat die moddervlek niet zien
         sf::Vector2f towerzesPosition(850, 430);
         spritetowerzes->setPosition(towerzesPosition);
