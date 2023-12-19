@@ -1,0 +1,3 @@
+Exception caught while initializing the game: Result is negative
+Exception caught while initializing the game: Result is negative
+Exception caught while initializing the game: Result is negative
