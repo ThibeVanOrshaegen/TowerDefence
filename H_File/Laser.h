@@ -7,6 +7,7 @@
 #include "Enemy.h"
 namespace Towerdefense
 {
+    // Declaration of the Laser class, derived from Lasershooting
     class Laser : public Lasershooting {
     private:
         sf::Vector2f laserstraalPosition;
@@ -22,3 +23,4 @@ namespace Towerdefense
     };
 }
 #endif
+
