@@ -6,13 +6,13 @@
 namespace Towerdefense {
 
     Canonshooting::Canonshooting() : spriteCanonKogeltwee(), arrowPosition(sf::Vector2f(0, 0)), direction(sf::Vector2f(-1, -1)) {
-        textureManager.textureKogelCanon.loadFromFile("./Afbeelding/Bullet_Cannon.png");
+        textureManager.textureKogelCanon.loadFromFile("./Bullet_Cannon.png");
         spriteCanonKogeltwee.setTexture(textureManager.textureKogelCanon);
         spriteCanonKogeltwee.setScale(0.4f, 0.4f);
     }
 
     Canonshooting::Canonshooting(const sf::Vector2f& initialPosition) : spriteCanonKogeltwee(), arrowPosition(initialPosition), direction(sf::Vector2f(-1, -1)) {
-        textureManager.textureKogelCanon.loadFromFile("./Afbeelding/Bullet_Cannon.png");
+        textureManager.textureKogelCanon.loadFromFile("./Bullet_Cannon.png");
         spriteCanonKogeltwee.setTexture(textureManager.textureKogelCanon);
         spriteCanonKogeltwee.setPosition(initialPosition);
         spriteCanonKogeltwee.setScale(0.4f, 0.4f);
