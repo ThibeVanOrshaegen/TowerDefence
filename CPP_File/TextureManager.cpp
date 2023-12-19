@@ -40,11 +40,11 @@ namespace Towerdefense
         textureplaybuttonmenu = new sf::Texture();
         spriteplaybuttonmenu = new sf::Sprite();
 
-        textureplaybuttonmenu->loadFromFile("./Afbeelding/newplay.png");
+        textureplaybuttonmenu->loadFromFile("./Afbeelding/PlayGT.png");
         spriteplaybuttonmenu->setTexture(*textureplaybuttonmenu);
         sf::Vector2f PlaybuttonmenuPosition(150, 290);
         spriteplaybuttonmenu->setPosition(PlaybuttonmenuPosition);
-        spriteplaybuttonmenu->setScale(0.3f, 0.3f);
+        spriteplaybuttonmenu->setScale(0.5f, 0.5f);
 
         //Optionbutton
         textureoptionbuttonmenu = new sf::Texture();
