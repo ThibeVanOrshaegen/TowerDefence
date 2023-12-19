@@ -867,3 +867,7 @@ void Game::updateEnemies() {
 - [ ] useful usage of an external library (not Qt)
 - [ ] project that communicates (e.g. UART, BT) with hardware
 a nice extra that you think that should deserve grading (stuff you put time in and is not rewarded by an item above)
+
+# Working build manual
+- [ ] install Visual Studio 2022 Community via this link https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta
+- [ ] 
