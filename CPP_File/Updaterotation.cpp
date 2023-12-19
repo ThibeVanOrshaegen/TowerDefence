@@ -6,8 +6,10 @@
 
 namespace Towerdefense {
 
+    // Static member variable definition for TurnAmmoOn flag
     bool Towerdefense::Updaterotation::TurnAmmoOn = false;
 
+    // Update shooter rotation for Canon weapon
     void Updaterotation::updateShooterRotationCanon(Canon* canonplaats, Enemy* snel, int Graden) {
 
         sf::Vector2f EnemyOnePosition = snel->spriteEnemy.getPosition();
@@ -33,6 +35,8 @@ namespace Towerdefense {
             TurnAmmoOn = false;
         }
     }
+
+    // Update shooter rotation for Laser weapon
     void Updaterotation::updateShooterRotationLaser(Laser* laserplaats, Enemy* traag, int Graden) {
 
         sf::Vector2f EnemyOnePosition = traag->spriteEnemy.getPosition();
@@ -51,6 +55,8 @@ namespace Towerdefense {
         //textureManager.spriteKogelCanon.setRotation(Hoek + 90 + Graden);
         //textureManager.spriteKogelCanon.setOrigin(textureManager.spriteKogelCanon.getLocalBounds().width / 2, textureManager.spriteKogelCanon.getLocalBounds().height / 2);
     }
+
+    // Update shooter rotation for Canonkogel weapon
     void Updaterotation::updateShooterRotationCanonkogel(Canonshooting* canonplaats, Enemy* snel, int Graden)
     {
         sf::Vector2f EnemyOnePosition = snel->spriteEnemy.getPosition();
@@ -67,6 +73,8 @@ namespace Towerdefense {
         canonplaats->spriteCanonKogeltwee.setOrigin(canonplaats->spriteCanonKogeltwee.getLocalBounds().width / 2, canonplaats->spriteCanonKogeltwee.getLocalBounds().height / 2);
 
     }
+
+    // Update shooter rotation for Laserkogel weapon
     void Updaterotation::updateShooterRotationLaserkogel(Lasershooting* laserplaats, Enemy* traag, int Graden)
     {
         sf::Vector2f EnemyOnePosition = traag->spriteEnemy.getPosition();
