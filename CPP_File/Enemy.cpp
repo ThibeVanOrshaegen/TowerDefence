@@ -8,7 +8,7 @@ namespace Towerdefense
 {
     Enemy::Enemy(sf::Vector2f initialPosition, sf::Vector2f size, unsigned char health, int  xVelocity, int  yVelocity) //Takes parameters initialPosition, size, health, xVelocity, and yVelocity, a parameterized constructor.
         : HealthBar(initialPosition, size, maxHealth), beweging(xVelocity, yVelocity) {
-        textureManager.textureEnemy.loadFromFile("./Afbeelding/Robottwee.png");
+        textureManager.textureEnemy.loadFromFile("./Robottwee.png");
         spriteEnemy.setTexture(textureManager.textureEnemy);
         spriteEnemy.setPosition(initialPosition);
         spriteEnemy.setScale(0.3f, 0.3f);
