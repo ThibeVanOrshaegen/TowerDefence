@@ -1,4 +1,3 @@
-// Gold.h
 #ifndef GOLD_H
 #define GOLD_H
 
